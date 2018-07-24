@@ -1,0 +1,86 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_option.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/04/12 21:47:52 by bhamdi            #+#    #+#             */
+/*   Updated: 2018/07/23 23:25:36 by bhamdi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_printf.h"
+
+int		error(int j)
+{
+	j == 1 ? ft_putendl("\n\nneed specifier after parametre or %\n\n") : 0;
+	j == 2 ? ft_putendl("\n\ndo you mean for the length 'hh'\n\n") : 0;
+	j == 3 ? ft_putendl("\n\ndo you mean for the length 'll'\n\n") : 0;
+	j == 4 ? ft_putendl("\n\nerror need va_arg") : 0;
+	j == 5 ? ft_putendl("error") : 0;
+	j == 6 ? ft_putendl("error") : 0;
+	j == 7 ? ft_putendl("error") : 0;
+	exit(0);
+	return (0);
+}
+
+void	apply_speci(t_data *data, t_option *flag)
+{
+//	int		i;
+
+//	i = 0;
+	flag->speci == '%' ? ft_percent(data, flag) : 0;
+	flag->speci == 'c' ? ft_char(data, flag) : 0;
+	flag->speci == 's' ? ft_str(data, flag) : 0;
+	find("dioxX", flag->speci) ? ft_int(data, flag) : 0;
+	flag->speci == 'u' ? ft_uint(data, flag) : 0;
+	find("fFeEaAgG", flag->speci) ? ft_double(data, flag) : 0;
+	flag->speci == 'n' ? ft_pint(data, flag) : 0;
+	flag->speci == 'p' ? ft_void(data, flag) : 0;
+
+
+
+	init_option(flag, 0, 0);
+}
+
+void	flush_data(t_data *data)
+{
+	write(1, data->data, data->index);
+	data->index = 0;
+}
+
+int		stock(t_data *data, char *fmt, int len)
+{
+	int	i;
+
+	i = 0;
+	while (fmt[i] && i < len)
+	{
+		data->index == SIZEBUF ? flush_data(data) : 0;
+		data->data[data->index] = fmt[i];
+		i++;
+		data->index++;
+		data->len++;
+	}
+	flush_data(data);
+	return (i);
+}
+
+void	init_option(t_option *flag, va_list *args, int bt)
+{
+	flag->sharp = 0;
+	flag->zero = 0;
+	flag->left = 0;
+	flag->space = 0;
+	flag->sign = 0;
+	flag->i_width = 0;
+	flag->c_width = 0;
+	flag->i_preci = 0;
+	flag->c_preci = 0;
+	flag->length[0] = '\0';
+	flag->length[1] = '\0';
+	flag->length[2] = '\0';
+	flag->speci = '\0';
+	bt == 1 ? flag->argptr = args : 0;
+}
