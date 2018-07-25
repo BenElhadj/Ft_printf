@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/03 02:20:55 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/07/23 21:09:23 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/07/25 22:00:16 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,10 @@ int		find_define(t_option *flag, t_format *fmtptr)
 		(flag->zero = 1) : 0;
 	fmtptr->i <= fmtptr->j && fmtptr->fmt[fmtptr->i] == ' ' ? fmtptr->i++ &&
 		(flag->space = 1) : 0;
-	fmtptr->i <= fmtptr->j && fmtptr->fmt[fmtptr->i] == '-' ? flag->left =
-		ft_atoi1(fmtptr) : 0;
-	fmtptr->i <= fmtptr->j && fmtptr->fmt[fmtptr->i] == '+' ? flag->sign =
-		ft_atoi1(fmtptr) : 0;
+	fmtptr->i <= fmtptr->j && fmtptr->fmt[fmtptr->i] == '-' && (fmtptr->i++) ?
+		flag->left = ft_atoi1(fmtptr) : 0;
+	fmtptr->i <= fmtptr->j && fmtptr->fmt[fmtptr->i] == '+' && (fmtptr->i++) ?
+		flag->sign = ft_atoi1(fmtptr) : 0;
 	find(WIDTH, fmtptr->fmt[fmtptr->i]) ? find_int(flag, fmtptr, 1) : 0;
 	fmtptr->fmt[fmtptr->i] == '.' && fmtptr->i++ ?
 		find_int(flag, fmtptr, 2) : 0;

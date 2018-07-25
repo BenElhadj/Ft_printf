@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/04 16:00:38 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/07/24 22:52:07 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/07/25 22:46:46 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 //%%
 void	ft_percent(t_data *data, t_option *flag)
 {
-	int exe = (int)va_arg(*flag->argptr, int);
-	
+	char exe = (int)va_arg(*flag->argptr, int);
+
+	printf("\nspeci = [%c]\nexe = [%d]\n",flag->speci , exe);
 	stock(data, ft_itoa1(exe), 1);
 }
 
@@ -25,6 +26,7 @@ void	ft_char(t_data *data, t_option *flag)
 {
 	char exe = (char)va_arg(*flag->argptr, int);
 
+//	printf("\nspeci = [%c]\nexe = [%c]\n",flag->speci , exe);
 	stock(data, ft_itoa1(exe), 1);
 }
 
@@ -38,6 +40,7 @@ void	ft_str(t_data *data, t_option *flag)
 	while(exe[len])
 		len++;
 
+//	printf("\nspeci = [%c]\nlen = [%d] exe = [%s]\n",flag->speci ,len, exe);
 	stock(data, exe, len);
 }
 
@@ -50,5 +53,6 @@ void	ft_int(t_data *data, t_option *flag)
 	int exe = (int)va_arg(*flag->argptr, int);
 	len = ft_intlen(exe);
 
+//	printf("\nspeci = [%c]\nlen = [%d] exe = [%d]\n",flag->speci ,len, exe);
 	stock(data, ft_itoa1(exe), len);
 }
