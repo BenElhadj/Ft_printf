@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/03 03:51:41 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/07/25 21:05:07 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/07/28 20:59:59 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int             find_int(t_option *flag, t_format *fmtptr, int a);
 
 
 void    filling(char *filling, char *exe, t_data *data, t_option *flag);
-void    ft_percent(t_data *data, t_option *flag);
+void    ft_percent(t_data *data/*, t_option *flag*/);
 void    ft_char(t_data *data, t_option *flag);
 void    ft_str(t_data *data, t_option *flag);
 void    ft_int(t_data *data, t_option *flag);

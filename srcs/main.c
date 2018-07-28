@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 18:07:53 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/07/25 21:57:01 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/07/28 21:01:34 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,22 @@
 int		main(void)
 {
 	int i;
-//	void	*ptr;
+	int n = -32768;
+	unsigned int u = 65535;
+	float f = 29.03;
+	int	*intptr;
+	char str2[9] = "pointeur\0";
+	char *str = "str\0";
+	char c = 'a';
+	intptr = (void*)str2;
 	i = 0;
 
-	i = ft_printf("{je commence %-17d\n====> %+11d\n====> % %\nbhamdi.%-9d...???.ben. %*.15lld,.elhadj.%+9hhs}%*%", "1303", "1952", "1108", "MY MOM", "RACHIDA IN MY HEART", "allah yar7emha.", "%");
-	printf("\n\n<<<(je commence %%-17d\n====> %%+11d\n====> %% %%\nbhamdi.%%-9d ...???.ben. %%*.15lld,.elhadj.%%+9hhs}%%*%%\", \"1303\", \"1952\", \"1108\", \"MY MOM\", \"RACHIDA IN MY HEART\", \"allah yar7emha\", \"%%\")>>>");
-	//ptr = "salut";
-	printf("\nft_printf return(%d)", i);
-//	printf("\nft_printf d(% 5d)", -12);
-	//printf("\nft_printf return(%p)", ptr);
+	i = printf("%% impression du %% ====> [%%]\nc impression du 'c' ====> [%c]\ns impression du 'str' ====> [%s]\nd impression du 1985 ====> [%d]\nu impression du 7235 ====> [%u]\nf impression du 29.03  ====> [%f]\nn impression du *ptr ====> [%n]\np impression du 'pointeur' ====> [%p]\n", c, str, n, u, f, intptr, intptr);
+
+	printf("\nprintf return(%d)\n", i);
+
+	i = ft_printf("%% impression du %% ====> [%%]\nc impression du 'c' ====> [%c]\ns impression du 'str' ====> [%s]\nd impression du 1985 ====> [%d]\nu impression du 7235 ====> [%u]\nf impression du 29.03  ====> [%f]\nn impression du *ptr ====> [%n]\np impression du 'pointeur' ====> [%p]\n", c, str, n, u, f, intptr, intptr);
+
+	printf("\nft_printf return(%d)\n", i);
 	return (0);
 }

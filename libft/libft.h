@@ -20,7 +20,7 @@
 # include <fcntl.h>
 # include <limits.h>
 # define BUFF_SIZE 5
-# define NB_FD OPEN_MAX
+# define NB_FD _POSIX_OPEN_MAX
 
 typedef struct		s_list
 {

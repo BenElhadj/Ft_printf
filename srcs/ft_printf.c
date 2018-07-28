@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/03 02:20:55 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/07/25 22:00:16 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/07/28 20:00:07 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,12 +102,8 @@ int		ft_printf(const char *restrict format, ...)
 	while (fmtptr.fmt[fmtptr.j])
 		fmtptr.j++;
 	while (fmtptr.i <= fmtptr.j)
-	{
-		fmtptr.fmt[fmtptr.i] != '%' ? stock(&data,
-			&(fmtptr.fmt[fmtptr.i++]), 1) :/* 0;
-		fmtptr.fmt[fmtptr.i] == '%' ?*/ (fmtptr.i = processing(&fmtptr, &data)) &&
-			(fmtptr.i++) /*: 0*/;
-	}
+		fmtptr.fmt[fmtptr.i] != '%' ? stock(&data, &(fmtptr.fmt[fmtptr.i++]), 
+				1) : (fmtptr.i = processing(&fmtptr, &data)) && (fmtptr.i++);
 	va_end(fmtptr.args);
 	return (data.len);
 }

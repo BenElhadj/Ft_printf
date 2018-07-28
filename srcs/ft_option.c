@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 21:47:52 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/07/25 21:58:24 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/07/28 21:00:19 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		error(int j)
 
 void	apply_speci(t_data *data, t_option *flag)
 {
-	flag->speci == '%' ? ft_percent(data, flag) : 0;
+	flag->speci == '%' ? ft_percent(data/*, flag*/) : 0;
 	flag->speci == 'c' ? ft_char(data, flag) : 0;
 	flag->speci == 's' ? ft_str(data, flag) : 0;
 	find("dioxX", flag->speci) ? ft_int(data, flag) : 0;
