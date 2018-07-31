@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 21:47:52 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/07/28 21:00:19 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/07/31 19:59:35 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ int		error(int j)
 //	exit(0);
 	return (0);
 }
-
+/*
 void	apply_speci(t_data *data, t_option *flag)
 {
-	flag->speci == '%' ? ft_percent(data/*, flag*/) : 0;
+	flag->speci == '%' ? ft_percent(data, flag) : 0;
 	flag->speci == 'c' ? ft_char(data, flag) : 0;
 	flag->speci == 's' ? ft_str(data, flag) : 0;
 	find("dioxX", flag->speci) ? ft_int(data, flag) : 0;
@@ -40,7 +40,7 @@ void	apply_speci(t_data *data, t_option *flag)
 
 	init_option(flag, 0, 0);
 }
-
+*/
 void	flush_data(t_data *data)
 {
 	write(1, data->data, data->index);
@@ -68,7 +68,6 @@ void	init_option(t_option *flag, va_list *args, int bt)
 {
 	flag->sharp = 0;
 	flag->zero = 0;
-	flag->left = 0;
 	flag->space = 0;
 	flag->sign = 0;
 	flag->i_width = 0;

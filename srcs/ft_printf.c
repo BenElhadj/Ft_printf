@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/03 02:20:55 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/07/28 20:00:07 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/07/31 22:05:36 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,29 +26,6 @@ char	find(const char *s, char c)
 	return (0);
 }
 
-int		find_int(t_option *flag, t_format *fmtptr, int a)
-{
-	int *c_var;
-	int *i_var;
-
-	a == 1 ? c_var = &flag->c_width : 0;
-	a == 1 ? i_var = &flag->i_width : 0;
-	a == 2 ? c_var = &flag->c_preci : 0;
-	a == 2 ? i_var = &flag->i_preci : 0;
-	if (fmtptr->fmt[fmtptr->i] == '*')
-	{
-		*c_var = 1;
-		(fmtptr->i)++;
-	}
-	else if (fmtptr->fmt[fmtptr->i] >= '0' && fmtptr->fmt[fmtptr->i] <= '9')
-		while (fmtptr->fmt[fmtptr->i] >= '0' && fmtptr->fmt[fmtptr->i] <= '9')
-		{
-			*i_var = ((*i_var * 10) + (fmtptr->fmt[fmtptr->i] - '0'));
-			(fmtptr->i)++;
-		}
-	return (0);
-}
-
 int		find_define(t_option *flag, t_format *fmtptr)
 {
 	fmtptr->i++;
@@ -58,20 +35,20 @@ int		find_define(t_option *flag, t_format *fmtptr)
 		(flag->zero = 1) : 0;
 	fmtptr->i <= fmtptr->j && fmtptr->fmt[fmtptr->i] == ' ' ? fmtptr->i++ &&
 		(flag->space = 1) : 0;
-	fmtptr->i <= fmtptr->j && fmtptr->fmt[fmtptr->i] == '-' && (fmtptr->i++) ?
-		flag->left = ft_atoi1(fmtptr) : 0;
-	fmtptr->i <= fmtptr->j && fmtptr->fmt[fmtptr->i] == '+' && (fmtptr->i++) ?
+	fmtptr->i <= fmtptr->j && find(FLAGS, fmtptr->fmt[fmtptr->i]) ?
 		flag->sign = ft_atoi1(fmtptr) : 0;
-	find(WIDTH, fmtptr->fmt[fmtptr->i]) ? find_int(flag, fmtptr, 1) : 0;
-	fmtptr->fmt[fmtptr->i] == '.' && fmtptr->i++ ?
-		find_int(flag, fmtptr, 2) : 0;
+	fmtptr->i <= fmtptr->j && find(WIDTH, fmtptr->fmt[fmtptr->i]) ? 
+		(fmtptr->fmt[fmtptr->i] != '*' ? (flag->i_width = ft_atoi1(fmtptr)) :
+		(flag->c_width = 1) && (fmtptr->i)++):0;
+	fmtptr->fmt[fmtptr->i] == '.' && fmtptr->i++ ? (fmtptr->fmt[fmtptr->i] == 
+			'*' ? flag->c_preci = 1 : (flag->i_preci = ft_atoi1(fmtptr))) : 0;
 	if (fmtptr->i <= fmtptr->j && find(LENGTH, fmtptr->fmt[fmtptr->i]))
 	{
 		flag->length[0] = fmtptr->fmt[fmtptr->i++];
 		((flag->length[0] == 'h' && fmtptr->fmt[fmtptr->i] == 'h') &&
-			fmtptr->i++) ? flag->length[1] = 'h' : 0;
+		 fmtptr->i++) ? flag->length[1] = 'h' : 0;
 		((flag->length[0] == 'l' && fmtptr->fmt[fmtptr->i] == 'l') &&
-			fmtptr->i++) ? flag->length[1] = 'l' : 0;
+		 fmtptr->i++) ? flag->length[1] = 'l' : 0;
 	}
 	find(SPECIFIER, fmtptr->fmt[fmtptr->i]) ? flag->speci = find(SPECIFIER,
 			fmtptr->fmt[fmtptr->i]) : fmtptr->i-- && error(1);
@@ -87,6 +64,23 @@ int		processing(t_format *fmtptr, t_data *data)
 	apply_speci(data, &flag);
 	return (fmtptr->i);
 }
+
+void	apply_speci(t_data *data, t_option *flag)
+{
+	flag->speci == '%' ? ft_percent(data, flag) : 0;
+	flag->speci == 'c' ? ft_char(data, flag) : 0;
+	flag->speci == 's' ? ft_str(data, flag) : 0;
+	find("dioxX", flag->speci) ? ft_int(data, flag) : 0;
+	flag->speci == 'u' ? ft_uint(data, flag) : 0;
+	find("fFeEaAgG", flag->speci) ? ft_double(data, flag) : 0;
+	flag->speci == 'n' ? ft_pint(data, flag) : 0;
+	flag->speci == 'p' ? ft_void(data, flag) : 0;
+
+
+
+	init_option(flag, 0, 0);
+}
+
 
 int		ft_printf(const char *restrict format, ...)
 {
