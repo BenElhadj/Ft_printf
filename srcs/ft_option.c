@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 21:47:52 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/07/31 19:59:35 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/08/02 06:00:36 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,19 @@
 
 int		error(int j)
 {
-//	j == 1 ? ft_putendl("\nneed specifier after parametre or %\n") : 0;
-//	j == 2 ? ft_putendl("\ndo you mean for the length 'hh'\n") : 0;
-//	j == 3 ? ft_putendl("\ndo you mean for the length 'll'\n") : 0;
-//	j == 4 ? ft_putendl("\nerror need va_arg\n") : 0;
+/*	j == 1 ? ft_putendl("\nneed specifier after parametre or %\n") : 0;
+ *	j == 2 ? ft_putendl("\ndo you mean for the length 'hh'\n") : 0;
+ *	j == 3 ? ft_putendl("\ndo you mean for the length 'll'\n") : 0;
+ *	j == 4 ? ft_putendl("\nerror need va_arg\n") : 0;*/
 	j == 5 ? ft_putendl("error") : 0;
 	j == 6 ? ft_putendl("error") : 0;
 	j == 7 ? ft_putendl("error") : 0;
-//	exit(0);
+/*
+ * 	exit(0);
+ * 	*/
 	return (0);
 }
-/*
-void	apply_speci(t_data *data, t_option *flag)
-{
-	flag->speci == '%' ? ft_percent(data, flag) : 0;
-	flag->speci == 'c' ? ft_char(data, flag) : 0;
-	flag->speci == 's' ? ft_str(data, flag) : 0;
-	find("dioxX", flag->speci) ? ft_int(data, flag) : 0;
-	flag->speci == 'u' ? ft_uint(data, flag) : 0;
-	find("fFeEaAgG", flag->speci) ? ft_double(data, flag) : 0;
-	flag->speci == 'n' ? ft_pint(data, flag) : 0;
-	flag->speci == 'p' ? ft_void(data, flag) : 0;
 
-
-
-	init_option(flag, 0, 0);
-}
-*/
 void	flush_data(t_data *data)
 {
 	write(1, data->data, data->index);

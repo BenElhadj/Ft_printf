@@ -6,56 +6,69 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 20:42:15 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/07/31 14:43:54 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/08/02 10:02:38 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-//%u
+/*
+ * %u
+ */
+
 void	ft_uint(t_data *data, t_option *flag)
 {
-	int len;
+	int				len;
+	unsigned int	exe;
 
 	len = 0;
-	unsigned int exe = va_arg(*flag->argptr, unsigned int);
+	exe = va_arg(*flag->argptr, unsigned int);
 	len = ft_intlen(exe);
-
-	stock(data, ft_itoa1(exe), len);
+	filling(" \0", ft_itoa1(exe), data, flag);
 }
 
-//%fFeEaAgG
+/*
+ * %fFeEaAgG
+ */
+
 void	ft_double(t_data *data, t_option *flag)
 {
-	int len;
+	int				len;
+	double			exe;
 
 	len = 0;
-	double exe = va_arg(*flag->argptr, double);
+	exe = va_arg(*flag->argptr, double);
 	len = ft_intlen(exe);
-	
-	stock(data, ft_itoa1(exe), len);
+//	printf("\nle nombre est [%f] len = [%d]\n", exe, len);
+	filling(" \0", ft_itoa2(exe), data, flag);
 }
 
-//%n
+/*
+ * %n
+ */
+
 void	ft_pint(t_data *data, t_option *flag)
 {
-	int len;
+	int				len;
+	int				*exe;
 
 	len = 0;
-	int *exe = va_arg(*flag->argptr, int*);
+	exe = va_arg(*flag->argptr, int*);
 	len = ft_intlen((long)exe);
-
-	stock(data, ft_itoa1((long)exe), len);
+	filling(" \0", ft_itoa1((long)exe), data, flag);
 }
 
-//%p
+/*
+ * %p
+ */
+
 void	ft_void(t_data *data, t_option *flag)
 {
-	int len;
+	int				len;
+	unsigned int	*exe;
 
 	len = 0;
-	unsigned int *exe = va_arg(*flag->argptr, unsigned int*);
+	exe = va_arg(*flag->argptr, unsigned int*);
 	len = ft_intlen((long)exe);
-
-	stock(data, ft_itoa1((long)exe), len);
+	filling(" \0", ft_itoa1((long)exe), data, flag);
 }

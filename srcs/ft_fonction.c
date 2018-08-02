@@ -6,18 +6,18 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 06:02:29 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/07/31 21:23:48 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/08/02 10:41:51 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_intlen(long n)
+int		ft_intlen(double n)
 {
 	int		i;
 
 	i = 0;
-	(n <= 0 ) ? i++ : i;
+	(n <= 0) ? i++ : i;
 	n = (n < 0) ? (n * -1) : n;
 	while (n > 0)
 	{
@@ -39,7 +39,7 @@ long	ft_atoi1(t_format *fmtptr)
 	if (fmtptr->fmt[fmtptr->i] == '+' || fmtptr->fmt[fmtptr->i] == '-')
 		fmtptr->i++;
 	while (fmtptr->fmt[fmtptr->i] && fmtptr->fmt[fmtptr->i] >= '0' &&
-		fmtptr->fmt[fmtptr->i] <= '9')
+			fmtptr->fmt[fmtptr->i] <= '9')
 	{
 		result = (result * 10) + (fmtptr->fmt[fmtptr->i] - '0');
 		fmtptr->i++;
@@ -49,7 +49,22 @@ long	ft_atoi1(t_format *fmtptr)
 	else
 		return (result);
 }
+char	*ft_itoa2(double n)
+{
+	char *div;
+	char *mod;
+	char *ret1;
+	char *ret2;
+	double mod1;
 
+	mod1 = n % 1;
+	div = ft_itoa1((long)n / 1);
+	mod = ft_itoa1((long)mod1);
+	ret1 = ft_strjoin(div, ".\0");
+	ret2 = ft_strjoin(ret1, mod);
+	printf("\ndiv = [%s] mod = [%s] ret1 = [%s] ret2 = [%s]\n", div, mod, ret1, ret2);
+	return (ret2);
+}
 char	*ft_itoa1(long n)
 {
 	char	*ret;
@@ -91,9 +106,10 @@ char	*ft_itoa_base(int val, int base, int up)
 
 	i = 1;
 	n = 0;
-	up == 1 ? (c = 'A'): (c = 'a');
-		if (val < 0)
-			base == 10 ? ((n = 1) && (val *= -1)) : 0;
+	up == 1 ? (c = 'A') : 0;
+	up != 1 ? (c = 'a') : 0;
+	if (val < 0)
+		base == 10 ? ((n = 1) && (val *= -1)) : 0;
 	while (ft_pow(base, i) - 1 < val)
 		i++;
 	if ((nbr = (char*)malloc(sizeof(nbr) * i)) == NULL)

@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/03 02:20:55 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/07/31 22:05:36 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/08/02 06:13:44 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ int		find_define(t_option *flag, t_format *fmtptr)
 		(flag->space = 1) : 0;
 	fmtptr->i <= fmtptr->j && find(FLAGS, fmtptr->fmt[fmtptr->i]) ?
 		flag->sign = ft_atoi1(fmtptr) : 0;
-	fmtptr->i <= fmtptr->j && find(WIDTH, fmtptr->fmt[fmtptr->i]) ? 
+	fmtptr->i <= fmtptr->j && find(WIDTH, fmtptr->fmt[fmtptr->i]) ?
 		(fmtptr->fmt[fmtptr->i] != '*' ? (flag->i_width = ft_atoi1(fmtptr)) :
-		(flag->c_width = 1) && (fmtptr->i)++):0;
-	fmtptr->fmt[fmtptr->i] == '.' && fmtptr->i++ ? (fmtptr->fmt[fmtptr->i] == 
+		 (flag->c_width = 1) && (fmtptr->i)++) : 0;
+	fmtptr->fmt[fmtptr->i] == '.' && fmtptr->i++ ? (fmtptr->fmt[fmtptr->i] ==
 			'*' ? flag->c_preci = 1 : (flag->i_preci = ft_atoi1(fmtptr))) : 0;
 	if (fmtptr->i <= fmtptr->j && find(LENGTH, fmtptr->fmt[fmtptr->i]))
 	{
@@ -75,12 +75,8 @@ void	apply_speci(t_data *data, t_option *flag)
 	find("fFeEaAgG", flag->speci) ? ft_double(data, flag) : 0;
 	flag->speci == 'n' ? ft_pint(data, flag) : 0;
 	flag->speci == 'p' ? ft_void(data, flag) : 0;
-
-
-
 	init_option(flag, 0, 0);
 }
-
 
 int		ft_printf(const char *restrict format, ...)
 {
@@ -96,7 +92,7 @@ int		ft_printf(const char *restrict format, ...)
 	while (fmtptr.fmt[fmtptr.j])
 		fmtptr.j++;
 	while (fmtptr.i <= fmtptr.j)
-		fmtptr.fmt[fmtptr.i] != '%' ? stock(&data, &(fmtptr.fmt[fmtptr.i++]), 
+		fmtptr.fmt[fmtptr.i] != '%' ? stock(&data, &(fmtptr.fmt[fmtptr.i++]),
 				1) : (fmtptr.i = processing(&fmtptr, &data)) && (fmtptr.i++);
 	va_end(fmtptr.args);
 	return (data.len);
