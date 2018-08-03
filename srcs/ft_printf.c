@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/03 02:20:55 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/08/02 06:13:44 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/08/03 01:23:34 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,23 @@ int		find_define(t_option *flag, t_format *fmtptr)
 	fmtptr->i++;
 	fmtptr->i <= fmtptr->j && fmtptr->fmt[fmtptr->i] == '#' ? fmtptr->i++ &&
 		(flag->sharp = 1) : 0;
+	while (fmtptr->i <= fmtptr->j && fmtptr->fmt[fmtptr->i] == ' ')
+	   	fmtptr->i++ ? (flag->space = 1) : 0;
 	fmtptr->i <= fmtptr->j && fmtptr->fmt[fmtptr->i] == '0' ? fmtptr->i++ &&
 		(flag->zero = 1) : 0;
-	fmtptr->i <= fmtptr->j && fmtptr->fmt[fmtptr->i] == ' ' ? fmtptr->i++ &&
-		(flag->space = 1) : 0;
-	fmtptr->i <= fmtptr->j && find(FLAGS, fmtptr->fmt[fmtptr->i]) ?
-		flag->sign = ft_atoi1(fmtptr) : 0;
+	fmtptr->i <= fmtptr->j && fmtptr->fmt[fmtptr->i] == '+' ? fmtptr->i++ &&
+		(flag->plus = 1) : 0;
+	while (fmtptr->i <= fmtptr->j && find(FLAGS, fmtptr->fmt[fmtptr->i]))
+		flag->sign = ft_atoi1(fmtptr);
+
 	fmtptr->i <= fmtptr->j && find(WIDTH, fmtptr->fmt[fmtptr->i]) ?
-		(fmtptr->fmt[fmtptr->i] != '*' ? (flag->i_width = ft_atoi1(fmtptr)) :
-		 (flag->c_width = 1) && (fmtptr->i)++) : 0;
+		(fmtptr->fmt[fmtptr->i] != '*' ? (flag->width = ft_atoi1(fmtptr)) :
+		 (flag->sign = va_arg(*flag->argptr, int)) && (fmtptr->i)++) : 0;
+
 	fmtptr->fmt[fmtptr->i] == '.' && fmtptr->i++ ? (fmtptr->fmt[fmtptr->i] ==
-			'*' ? flag->c_preci = 1 : (flag->i_preci = ft_atoi1(fmtptr))) : 0;
+		'*' ? (flag->preci = va_arg(*flag->argptr, int)) : (flag->preci = 
+		ft_atoi1(fmtptr))) : 0;
+
 	if (fmtptr->i <= fmtptr->j && find(LENGTH, fmtptr->fmt[fmtptr->i]))
 	{
 		flag->length[0] = fmtptr->fmt[fmtptr->i++];

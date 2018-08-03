@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 06:02:29 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/08/02 10:41:51 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/08/02 23:28:37 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,14 @@ char	*ft_itoa2(double n)
 {
 	char *div;
 	char *mod;
-	char *ret1;
-	char *ret2;
-	double mod1;
+	char *ret;
 
-	mod1 = n % 1;
-	div = ft_itoa1((long)n / 1);
-	mod = ft_itoa1((long)mod1);
-	ret1 = ft_strjoin(div, ".\0");
-	ret2 = ft_strjoin(ret1, mod);
-	printf("\ndiv = [%s] mod = [%s] ret1 = [%s] ret2 = [%s]\n", div, mod, ret1, ret2);
-	return (ret2);
+	div = ft_itoa1(n / 1);
+	mod = ft_itoa1((n - (long)n) * 1000000);
+
+	ret = ft_strjoin(div, ".\0");
+	ret = ft_strjoin(ret, mod);
+	return (ret);
 }
 char	*ft_itoa1(long n)
 {

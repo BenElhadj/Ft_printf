@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 01:22:36 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/03/31 06:52:47 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/08/03 11:12:05 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void				*ft_memccpy(void *dest, const void *src, int c, size_t n);
 char				*ft_itoa(int n);
 char				*ft_strrev(char *str);
 char				*ft_strnew(size_t size);
+long				ft_atoi(const char *str);
 char				*ft_strlowcase(char *str);
 char				*ft_strtrim(char const *s);
 char				*ft_strdup(const char *src);
@@ -85,7 +86,6 @@ int					ft_isprint(int c);
 int					ft_is_prime(int nb);
 int					ft_factorial(int nb);
 int					ft_fibonacci(int index);
-int					ft_atoi(const char *str);
 int					get_next_line(const int fd, char **line);
 int					ft_strcmp(const char *s1, const char *s2);
 int					ft_strequ(char const *s1, char const *s2);

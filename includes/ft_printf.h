@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/03 03:51:41 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/08/02 10:03:47 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/08/03 11:06:01 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include "../libft/libft.h"
 # define SIZEBUF 1985
 # define SPECIFIER "aAcCdDeEfFgGinoOpsSuUxX%"
-# define FLAGS "-+0123456789"
+# define FLAGS "-0123456789"
 # define WIDTH "0123456789*"
 # define LENGTH "hljztL"
 
@@ -46,13 +46,12 @@ typedef struct	s_option
 	char		sharp;
 	char		zero;
 	char		space;
+	char		plus;
 	int			sign;
 
-	int			i_width;
-	int			c_width;
+	int			width;
 
-	int			i_preci;
-	int			c_preci;
+	int			preci;
 
 	char		length[3];
 

@@ -6,13 +6,13 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 06:02:29 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/07/22 12:39:03 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/08/03 11:09:53 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_atoi(const char *str)
+long		ft_atoi(const char *str)
 {
 	size_t	i;
 	size_t	result;

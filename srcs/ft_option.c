@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 21:47:52 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/08/02 06:00:36 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/08/03 01:23:50 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,10 @@ void	init_option(t_option *flag, va_list *args, int bt)
 	flag->sharp = 0;
 	flag->zero = 0;
 	flag->space = 0;
+	flag->plus = 0;
 	flag->sign = 0;
-	flag->i_width = 0;
-	flag->c_width = 0;
-	flag->i_preci = 0;
-	flag->c_preci = 0;
+	flag->width = 0;
+	flag->preci = 0;
 	flag->length[0] = '\0';
 	flag->length[1] = '\0';
 	flag->length[2] = '\0';

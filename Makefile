@@ -6,7 +6,7 @@
 #    By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/29 05:26:55 by bhamdi            #+#    #+#              #
-#    Updated: 2018/07/23 21:45:30 by bhamdi           ###   ########.fr        #
+#    Updated: 2018/08/02 23:42:11 by bhamdi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ BWhite=\033[1;37m       # White
 AWK = awk '{print $$1, $$2, $$3, $$4, $$5, $$6, $$7, $$8, $$9, $$10 $$11, $$12}'
 
 NAME = libftprintf.a
-FLAGS = -g -Werror -Wall -Wextra
+#FLAGS = -g -Werror -Wall -Wextra
+FLAGS = 
 
 LIB_PATH = libft/
 LIB_NAME = libft.a

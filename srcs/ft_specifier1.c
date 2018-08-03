@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/04 16:00:38 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/08/02 07:41:19 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/08/03 06:36:05 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_char(t_data *data, t_option *flag)
 
 	exe[0] = (char)va_arg(*flag->argptr, int);
 	exe[1] = '\0';
-//	find(flag->length, 'l') ? (wint_t)exe : 0;
+	
 	filling(" \0", exe, data, flag);
 }
 
@@ -49,6 +49,7 @@ void	ft_str(t_data *data, t_option *flag)
 
 	len = 0;
 	exe = (char*)va_arg(*flag->argptr, char*);
+//printf("\nexe = [%s]\n",exe);
 	while (exe[len])
 		len++;
 	filling(" \0", exe, data, flag);
