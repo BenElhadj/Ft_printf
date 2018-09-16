@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 20:42:15 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/08/02 22:36:59 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/09/12 23:38:41 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_uint(t_data *data, t_option *flag)
 	len = 0;
 	exe = va_arg(*flag->argptr, unsigned int);
 	len = ft_intlen(exe);
-	filling(" \0", ft_itoa1(exe), data, flag);
+	filling(ft_itoa1(exe), data, flag);
 }
 
 /*
@@ -40,7 +40,7 @@ void	ft_double(t_data *data, t_option *flag)
 	exe = va_arg(*flag->argptr, double);
 	len = ft_intlen(exe);
 //	printf("\nle nombre est [%f] len = [%d]\n", exe, len);
-	filling(" \0", ft_itoa2(exe), data, flag);
+	filling(ft_itoa2(exe), data, flag);
 }
 
 /*
@@ -55,7 +55,7 @@ void	ft_pint(t_data *data, t_option *flag)
 	len = 0;
 	exe = va_arg(*flag->argptr, int*);
 	len = ft_intlen((long)exe);
-	filling(" \0", ft_itoa1((long)exe), data, flag);
+	filling(ft_itoa1((long)exe), data, flag);
 }
 
 /*
@@ -70,5 +70,5 @@ void	ft_void(t_data *data, t_option *flag)
 	len = 0;
 	exe = va_arg(*flag->argptr, unsigned int*);
 	len = ft_intlen((long)exe);
-	filling(" \0", ft_itoa1((long)exe), data, flag);
+	filling(ft_itoa1((long)exe), data, flag);
 }

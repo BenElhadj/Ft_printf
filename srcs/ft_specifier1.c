@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/04 16:00:38 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/08/03 06:36:05 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/09/16 19:52:14 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_percent(t_data *data, t_option *flag)
 	char	exe;
 
 	exe = '%';
-	filling(" \0", "%\0", data, flag);
+	filling("%\0", data, flag);
 }
 
 /*
@@ -35,7 +35,7 @@ void	ft_char(t_data *data, t_option *flag)
 	exe[0] = (char)va_arg(*flag->argptr, int);
 	exe[1] = '\0';
 	
-	filling(" \0", exe, data, flag);
+	filling(exe, data, flag);
 }
 
 /*
@@ -52,7 +52,7 @@ void	ft_str(t_data *data, t_option *flag)
 //printf("\nexe = [%s]\n",exe);
 	while (exe[len])
 		len++;
-	filling(" \0", exe, data, flag);
+	filling(exe, data, flag);
 }
 
 /*
@@ -61,11 +61,11 @@ void	ft_str(t_data *data, t_option *flag)
 
 void	ft_int(t_data *data, t_option *flag)
 {
-	int		len;
+//	int		len;
 	int		exe;
 
-	len = 0;
+//	len = 0;
 	exe = va_arg(*flag->argptr, unsigned int);
-	len = ft_intlen(exe);
-	filling(" \0", ft_itoa1(exe), data, flag);
+	//filling_int(exe, data, flag);
+	stock(data, filling_int(exe, data, flag), data->i);
 }

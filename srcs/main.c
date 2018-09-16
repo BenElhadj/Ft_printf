@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 18:07:53 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/08/03 12:13:14 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/09/16 23:43:09 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,15 @@ int		main(void)
 
 	printf("\nft_printf return(%d)\n", i);
 	*/
-	int r1 = 0, r2 = 0;
-	r1 = 	printf("VR:: [%-67.15d] \n", 1234567890);
-	r2 = ft_printf("ME:: [%-67.15d] \n", 1234567890);
+	int r1 = 0, r2 = 0, x1 = 0, x2 = 0;
+	r1 = 	printf("VR:: [%+20.18d]\n", 1234567890);
+	r2 = ft_printf("ME:: [%+20.18d]\n", 1234567890);
 
 	printf("[VR][%d] - [ME][%d]\n", r1, r2);
 
 	printf("radhoin TEST:\n");
-	   printf("[%-12.9d]\n", 3959);
-	ft_printf("[%-12.9d]\n", 3959);
+	x1 = 	printf("VR:: [%+-15.10d]\n", 3959);
+	x2 = ft_printf("ME:: [%+-15.10d]\n", 3959);
+	printf("[VR][%d] - [ME][%d]\n", x1, x2);
 	return (0);
 }
