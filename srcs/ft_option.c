@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 21:47:52 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/09/13 03:11:54 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/09/17 07:22:01 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,34 @@
 
 int		error(int j)
 {
-/*	j == 1 ? ft_putendl("\nneed specifier after parametre or %\n") : 0;
- *	j == 2 ? ft_putendl("\ndo you mean for the length 'hh'\n") : 0;
- *	j == 3 ? ft_putendl("\ndo you mean for the length 'll'\n") : 0;
- *	j == 4 ? ft_putendl("\nerror need va_arg\n") : 0;*/
+/*
+** 	j == 1 ? ft_putendl("\nneed specifier after parametre or %\n") : 0;
+**	j == 2 ? ft_putendl("\ndo you mean for the length 'hh'\n") : 0;
+**	j == 3 ? ft_putendl("\ndo you mean for the length 'll'\n") : 0;
+**	j == 4 ? ft_putendl("\nerror need va_arg\n") : 0;
+*/
 	j == 5 ? ft_putendl("error") : 0;
 	j == 6 ? ft_putendl("error") : 0;
 	j == 7 ? ft_putendl("error") : 0;
 /*
- * 	exit(0);
- * 	*/
+** 	exit(0);
+*/
 	return (0);
+}
+
+int		ft_intlen(long long int n)
+{
+	int		i;
+
+	i = 0;
+	n <= 0 ? i++ : 0;
+	n < 0 ? n *= -1 : 0;
+	while (n > 0)
+	{
+		n /= 10;
+		i++;
+	}
+	return (i);
 }
 
 void	flush_data(t_data *data)

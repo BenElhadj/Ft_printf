@@ -6,15 +6,15 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 20:42:15 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/09/12 23:38:41 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/09/17 07:31:19 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 /*
- * %u
- */
+** %u
+*/
 
 void	ft_uint(t_data *data, t_option *flag)
 {
@@ -28,8 +28,8 @@ void	ft_uint(t_data *data, t_option *flag)
 }
 
 /*
- * %fFeEaAgG
- */
+** %fFeEaAgG
+*/
 
 void	ft_double(t_data *data, t_option *flag)
 {
@@ -39,13 +39,12 @@ void	ft_double(t_data *data, t_option *flag)
 	len = 0;
 	exe = va_arg(*flag->argptr, double);
 	len = ft_intlen(exe);
-//	printf("\nle nombre est [%f] len = [%d]\n", exe, len);
 	filling(ft_itoa2(exe), data, flag);
 }
 
 /*
- * %n
- */
+** %n
+*/
 
 void	ft_pint(t_data *data, t_option *flag)
 {
@@ -59,8 +58,8 @@ void	ft_pint(t_data *data, t_option *flag)
 }
 
 /*
- * %p
- */
+** %p
+*/
 
 void	ft_void(t_data *data, t_option *flag)
 {

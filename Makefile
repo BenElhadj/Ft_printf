@@ -6,7 +6,7 @@
 #    By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/29 05:26:55 by bhamdi            #+#    #+#              #
-#    Updated: 2018/08/02 23:42:11 by bhamdi           ###   ########.fr        #
+#    Updated: 2018/09/17 07:07:48 by bhamdi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,9 +25,8 @@ FLAGS =
 LIB_PATH = libft/
 LIB_NAME = libft.a
 SRCS_PATH = srcs/
-SRC_FILE = ft_flag.c ft_option.c ft_printf.c ft_specifier1.c ft_width.c \
-		    ft_length.c ft_precision.c ft_resolve.c ft_specifier2.c main.c \
-			ft_fonction.c
+SRC_FILE = ft_flag.c ft_option.c ft_printf.c ft_specifier1.c ft_specifier2.c \
+		   ft_fonction.c main.c
 
 
 SRC = $(addprefix $(SRCS_PATH)/,$(SRC_FILE))

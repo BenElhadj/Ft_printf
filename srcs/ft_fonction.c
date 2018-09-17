@@ -6,26 +6,11 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 06:02:29 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/09/13 04:41:11 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/09/17 07:20:40 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int		ft_intlen(long long int n)
-{
-	int		i;
-
-	i = 0;
-	n <= 0 ? i++ : 0;
-	n < 0 ? n *= -1 : 0;
-	while (n > 0)
-	{
-		n /= 10;
-		i++;
-	}
-	return (i);
-}
 
 long	ft_atoi1(t_format *fmtptr)
 {
@@ -49,6 +34,7 @@ long	ft_atoi1(t_format *fmtptr)
 	else
 		return (result);
 }
+
 char	*ft_itoa2(double n)
 {
 	char *div;
@@ -57,11 +43,11 @@ char	*ft_itoa2(double n)
 
 	div = ft_itoa1(n / 1);
 	mod = ft_itoa1((n - (long)n) * 1000000);
-
 	ret = ft_strjoin(div, ".\0");
 	ret = ft_strjoin(ret, mod);
 	return (ret);
 }
+
 char	*ft_itoa1(long n)
 {
 	char	*ret;
