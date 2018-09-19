@@ -1,40 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*   ft_fonction2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/11 05:53:15 by bhamdi            #+#    #+#             */
-/*   Updated: 2017/01/28 17:18:44 by bhamdi           ###   ########.fr       */
+/*   Created: 2018/09/19 01:32:25 by bhamdi            #+#    #+#             */
+/*   Updated: 2018/09/19 01:45:32 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-char	*ft_strstr(const char *s1, const char *s2)
+void	ft_putchar(char c)
 {
-	int i;
-	int n;
-	int len;
+	write(1, &c, 1);
+}
+
+char	*ft_strcpy(char *dest, const char *src)
+{
+	size_t i;
 
 	i = 0;
-	n = 0;
-	len = 0;
-	while (s2[len] != '\0')
-		len++;
-	if (len == 0)
-		return ((char *)s1);
-	while (s1[i])
+	while (src[i])
 	{
-		while (s2[n] == s1[i + n])
-		{
-			if (n == len - 1)
-				return ((char *)s1 + i);
-			n++;
-		}
-		n = 0;
+		dest[i] = src[i];
 		i++;
 	}
-	return (0);
+	dest[i] = '\0';
+	return (dest);
+}
+
+void	ft_putstr(char *str)
+{
+	*str != '\0' ? write(1, str, ft_strlen(str)) : 0;
 }

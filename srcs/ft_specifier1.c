@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/04 16:00:38 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/09/17 11:44:43 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/09/19 00:20:46 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	ft_str(t_data *data, t_option *flag)
 
 	len = 0;
 	exe = (char*)va_arg(*flag->argptr, char*);
+//	flag->length[0] == 'l' && flag->length[1] == '\0' ? exe = (wchar_t)exe : 0; 
 	while (exe[len])
 		len++;
 	filling(exe, data, flag);

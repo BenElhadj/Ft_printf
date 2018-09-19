@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/03 03:51:41 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/09/16 19:34:27 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/09/19 13:24:23 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <stdarg.h>
-# include "../libft/libft.h"
 # define SIZEBUF 1985
 # define SPECIFIER "aAcCdDeEfFgGinoOpsSuUxX%"
 # define FLAGS "-0123456789"
@@ -65,14 +64,14 @@ typedef struct	s_option
 
 char			find(const char *s, char c);
 int				main(void);
-void			ft_putchar(char c);
-void			ft_putnbr(int nb);
-void			ft_putstr(char *str);
-void			ft_putendl(char const *s);
-void			ft_bzero(void *s, size_t n);
-char			*ft_strchr(const char *s, int c);
-size_t			ft_strlen(const char *str);
-size_t			ft_strlcat(char *dest, const char *src, size_t size);
+//void			ft_putchar(char c);
+//void			ft_putnbr(int nb);
+//void			ft_putstr(char *str);
+//void			ft_putendl(char const *s);
+//void			ft_bzero(void *s, size_t n);
+//char			*ft_strchr(const char *s, int c);
+//size_t			ft_strlen(const char *str);
+//size_t			ft_strlcat(char *dest, const char *src, size_t size);
 int				ft_printf(const char *restrict format, ...);
 int				find_define(t_option *flag, t_format *fmtptr);
 int				processing(t_format *fmtptr, t_data *data);
@@ -99,5 +98,12 @@ void			space(char *exe, t_data *data, t_option *flag);
 int				ft_pow(int nb, int pow);
 char			*ft_itoa_base(int val, int base, int up);
 void			stock_exe(t_data *data, char *txt, int len);
+void			*ft_memset(void *b, int c, size_t len);
+void			ft_putendl(char const *s);
+char			*ft_strjoin(char const *s1, char const *s2);
+size_t			ft_strlen(const char *str);
+void			ft_putchar(char c);
+char			*ft_strcpy(char *dest, const char *src);
+void			ft_putstr(char *str);
 
 #endif

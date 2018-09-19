@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 20:42:15 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/09/17 07:31:19 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/09/18 23:59:17 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ void	ft_uint(t_data *data, t_option *flag)
 	len = 0;
 	exe = va_arg(*flag->argptr, unsigned int);
 	len = ft_intlen(exe);
-	filling(ft_itoa1(exe), data, flag);
+	stock(data, filling_int(exe, data, flag), data->i);
+//	filling(ft_itoa1(exe), data, flag);
 }
 
 /*
