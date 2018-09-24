@@ -6,11 +6,11 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/19 01:32:25 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/09/19 01:35:25 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/09/24 04:56:47 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
 void	*ft_memset(void *b, int c, size_t len)
 {
@@ -23,18 +23,6 @@ void	*ft_memset(void *b, int c, size_t len)
 		str++;
 	}
 	return (b);
-}
-
-void	ft_putendl(char const *s)
-{
-	char *str;
-
-	str = (char*)s;
-	if (str)
-	{
-		ft_putstr(str);
-		ft_putchar('\n');
-	}
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)

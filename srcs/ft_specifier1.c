@@ -6,11 +6,11 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/04 16:00:38 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/09/19 00:20:46 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/09/24 04:42:22 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
 /*
 **%%
@@ -48,20 +48,29 @@ void	ft_str(t_data *data, t_option *flag)
 
 	len = 0;
 	exe = (char*)va_arg(*flag->argptr, char*);
-//	flag->length[0] == 'l' && flag->length[1] == '\0' ? exe = (wchar_t)exe : 0; 
+	exe == NULL ? exe = "(null)" : 0;
 	while (exe[len])
 		len++;
 	filling(exe, data, flag);
 }
 
 /*
-**%dioxX
+**%dioxXD
 */
 
 void	ft_int(t_data *data, t_option *flag)
 {
 	int		exe;
+	long	exe_for_D;
 
-	exe = va_arg(*flag->argptr, unsigned int);
-	stock(data, filling_int(exe, data, flag), data->i);
+	if (flag->speci == 'D' || (flag->speci == 'd' && flag->length == 'l'))
+	{
+		exe_for_D = va_arg(*flag->argptr, long);
+		stock(data, filling_int(exe_for_D, data, flag), data->i);
+	}
+	else
+	{
+		exe = va_arg(*flag->argptr, int);
+		stock(data, filling_int(exe, data, flag), data->i);
+	}
 }

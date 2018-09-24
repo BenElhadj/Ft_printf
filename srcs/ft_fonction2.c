@@ -6,11 +6,11 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/19 01:32:25 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/09/19 01:45:32 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/09/21 00:45:42 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
 void	ft_putchar(char c)
 {

@@ -6,11 +6,11 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/03 02:20:55 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/09/19 01:02:07 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/09/21 07:31:18 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
 char	find(const char *s, char c)
 {
@@ -47,11 +47,11 @@ int		find_define(t_option *flag, t_format *fmtptr)
 		ft_atoi1(fmtptr))) : 0;
 	if (fmtptr->i <= fmtptr->j && find(LENGTH, fmtptr->fmt[fmtptr->i]))
 	{
-		flag->length[0] = fmtptr->fmt[fmtptr->i++];
-		((flag->length[0] == 'h' && fmtptr->fmt[fmtptr->i] == 'h') &&
-		fmtptr->i++) ? flag->length[1] = 'h' : 0;
-		((flag->length[0] == 'l' && fmtptr->fmt[fmtptr->i] == 'l') &&
-		fmtptr->i++) ? flag->length[1] = 'l' : 0;
+		flag->length = fmtptr->fmt[fmtptr->i++];
+		((flag->length == 'h' && fmtptr->fmt[fmtptr->i] == 'h') &&
+		fmtptr->i++) ? flag->length = 'H' : 0;
+		((flag->length == 'l' && fmtptr->fmt[fmtptr->i] == 'l') &&
+		fmtptr->i++) ? flag->length = 'L' : 0;
 	}
 	find(SPECIFIER, fmtptr->fmt[fmtptr->i]) ? flag->speci = find(SPECIFIER,
 			fmtptr->fmt[fmtptr->i]) : fmtptr->i-- && error(1);
@@ -73,7 +73,7 @@ void	apply_speci(t_data *data, t_option *flag)
 	flag->speci == '%' ? ft_percent(data, flag) : 0;
 	flag->speci == 'c' ? ft_char(data, flag) : 0;
 	flag->speci == 's' ? ft_str(data, flag) : 0;
-	find("dioxX", flag->speci) ? ft_int(data, flag) : 0;
+	find("dDioxX", flag->speci) ? ft_int(data, flag) : 0;
 	flag->speci == 'u' ? ft_uint(data, flag) : 0;
 	find("fFeEaAgG", flag->speci) ? ft_double(data, flag) : 0;
 	flag->speci == 'n' ? ft_pint(data, flag) : 0;

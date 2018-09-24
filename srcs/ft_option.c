@@ -6,11 +6,11 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 21:47:52 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/09/17 07:22:01 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/09/21 05:12:00 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
 int		error(int j)
 {
@@ -20,10 +20,13 @@ int		error(int j)
 **	j == 3 ? ft_putendl("\ndo you mean for the length 'll'\n") : 0;
 **	j == 4 ? ft_putendl("\nerror need va_arg\n") : 0;
 */
-	j == 5 ? ft_putendl("error") : 0;
-	j == 6 ? ft_putendl("error") : 0;
-	j == 7 ? ft_putendl("error") : 0;
+
+	j == 5 ? ft_putstr("error") : 0;
+
 /*
+**	j == 6 ? ft_putendl("error") : 0;
+**	j == 7 ? ft_putendl("error") : 0;
+**
 ** 	exit(0);
 */
 	return (0);
@@ -76,9 +79,7 @@ void	init_option(t_option *flag, va_list *args, int bt)
 	flag->sign = 0;
 	flag->width = 0;
 	flag->preci = 0;
-	flag->length[0] = '\0';
-	flag->length[1] = '\0';
-	flag->length[2] = '\0';
+	flag->length = '\0';
 	flag->speci = '\0';
 	bt == 1 ? flag->argptr = args : 0;
 }

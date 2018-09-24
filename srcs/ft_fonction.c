@@ -6,11 +6,11 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 06:02:29 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/09/17 07:20:40 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/09/24 05:01:24 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
 long	ft_atoi1(t_format *fmtptr)
 {
@@ -48,27 +48,27 @@ char	*ft_itoa2(double n)
 	return (ret);
 }
 
-char	*ft_itoa1(long n)
+char	*ft_itoa1(long long n)
 {
 	char	*ret;
 	int		temp_n;
-	int		size_ret;
+	int		len;
 	char	sign;
 
 	sign = (n < 0) ? -1 : 1;
-	size_ret = 2 + (n < 0);
+	len = 2 + (n < 0);
 	temp_n = n;
 	while ((n = n / 10))
-		size_ret++;
+		len++;
 	n = temp_n;
-	if ((ret = (char *)malloc(sizeof(char) * size_ret--)) == NULL)
+	if ((ret = (char *)malloc(sizeof(char) * len--)) == NULL)
 		return (NULL);
-	ret[size_ret--] = '\0';
-	ret[size_ret--] = sign * (n % 10) + '0';
+	ret[len--] = '\0';
+	ret[len--] = sign * (n % 10) + '0';
 	while ((n = n / 10))
-		ret[size_ret--] = sign * (n % 10) + '0';
+		ret[len--] = sign * (n % 10) + '0';
 	if (sign < 0)
-		ret[size_ret] = '-';
+		ret[len] = '-';
 	return (ret);
 }
 

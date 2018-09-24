@@ -1,76 +1,67 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/01/29 05:26:55 by bhamdi            #+#    #+#              #
-#    Updated: 2018/09/19 12:48:18 by bhamdi           ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+CC = gcc
+FLAGS = -Wall -Wextra -Werror
 
-Off=\033[0m             # Color off
-BRed=\033[0;31m         # Red
-BGreen=\033[1;32m       # Green
-BWhite=\033[1;37m       # White
-
-AWK = awk '{print $$1, $$2, $$3, $$4, $$5, $$6, $$7, $$8, $$9, $$10 $$11, $$12}'
+CPP_FLAGS = -Iinclude
+LDFLAGS = -Llibft
+LDLIBS = -lft
 
 NAME = libftprintf.a
-CC = clang
-FLAGS = -g -Werror -Wall -Wextra
 
-SRCS_PATH = srcs/
-SRC_FILE = ft_flag.c ft_option.c ft_printf.c ft_specifier1.c ft_specifier2.c \
-		   ft_fonction.c ft_fonction1.c ft_fonction2.c main.c
+NAME_PROJECT = ft_printf
 
+SRC_PATH = srcs/
+LIB_PATH = libft
+SRCLIB_PATH = $(LIB_PATH)/srcs
+INC_PATH = includes/
+OBJ_PATH = obj/
+OBJLIB_PATH = libft/obj/
 
-SRC = $(addprefix $(SRCS_PATH)/,$(SRC_FILE))
+SRC_NAME = ft_flag.c ft_option.c ft_printf.c ft_specifier1.c ft_specifier2.c \
+		   ft_fonction.c ft_fonction1.c ft_fonction2.c 
 
-OBJ = $(patsubst srcs/%.c,./%.o,$(SRC))
-INC = -I includes/
+LIB_NAME = ft_atoi.c ft_bzero.c ft_space.c ft_isdigit.c ft_memalloc.c \
+		   ft_memset.c ft_strchr.c ft_strlen.c 
 
-.SILENT:
+INC_NAME = ft_printf.h
+OBJ_NAME = $(SRC_NAME:.c=.o)
+OBJLIB_NAME = $(LIB_NAME:.c=.o)
 
-all : $(NAME)
+SRC = $(addprefix $(SRC_PATH)/, $(SRC_NAME))
+LIB = $(addprefix $(LIB_PATH)/, $(LIB_NAME))
+INC = $(addprefix $(INC_PATH)/, $(INC_NAME))
 
-$(NAME): $(OBJ)
-		
-		printf "\n\033[42m${BWhite} RULE: make => [ ft_printf ]....[ OK ] \
-			${Off}\n\n" | ${AWK}
-		
-	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
-		
-		printf "\033[42m${BWhite} [ ft_printf ]..................[ OK ] \
-			${Off}\n\n" | ${AWK}
+OBJ = $(addprefix $(OBJ_PATH)/, $(OBJ_NAME))
+OBJLIB = $(addprefix $(OBJLIB_PATH)/, $(OBJLIB_NAME))
 
-./%.o : $(SRCS_PATH)%.c
-	gcc $(FLAGS) $(INC) -c $< -o $@
-	
-		printf "${BGreen}[ ✔ ] $<\n" | ${AWK}
+all: $(NAME)
+	 
+$(NAME): $(OBJ) $(OBJLIB)
+	@ar rc $(NAME) $(OBJ) $(OBJLIB)
+	@ranlib $(NAME)
+	@make -C $(LIB_PATH)
+	@echo "\033[1;34m$(NAME_PROJECT)\t\033[1;33mCompilation\t\033[0;32m[OK]\033[0m"
+	@echo "It's finish !\n\n"
 
+$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
+	@mkdir $(OBJ_PATH) 2> /dev/null || true
+	@$(CC) $(FLAGS) -o $@ -c $<
 
-clean:		
-	
-	rm -f $(OBJ)
-	
-		printf "${BRed}[ ✔ ] Clean${Off}\n" | ${AWK}
-		printf "\033[42m${BWhite} RULE: clean => [ ft_printf ]...[ OK ] \
-			${Off}\n\n" | ${AWK}
+$(OBJLIB_PATH)/%.o: $(SRCLIB_PATH)/%.c
+	@mkdir $(OBJLIB_PATH) 2> /dev/null || true
+	@$(CC) $(FLAGS) -I libft/includes -o $@ -c $<
 
-fclean:
-	
-	rm -f $(OBJ)
-		
-		printf "${BRed}[ ✔ ] Clean${Off}\n" | ${AWK}
-	
-	rm -f $(NAME)
-		
-		printf "${BRed}[ ✔ ] FClean${Off}\n" | ${AWK}
-		printf "\n\033[42m${BWhite} RULE: fclean => [ ft_printf ]..[ OK ] \
-			${Off}\n\n" | ${AWK}
+clean:
+	@make -C $(LIB_PATH) clean
+	@rm -rf $(OBJ_PATH)
+	@echo "\033[1;34m$(NAME_PROJECT)\t\033[1;33mCleaning obj\t\033[0;32m[OK]\033[0m"
+
+fclean: clean
+	@make -C libft fclean
+	@rm -f $(NAME)
+	@echo "\033[1;34m$(NAME_PROJECT)\t\033[1;33mCleaning lib\t\033[0;32m[OK]\033[0m"
 
 re: fclean all
 
-.PHONY: all clean fclean re
+norme:
+	@norminette $(SRC) $(LIB) $(INC)
+	@echo "\033[1;34m$(NAME_PROJECT)\t\033[1;33mNorminette\t\033[0;32m[OK]\033[0m"	
