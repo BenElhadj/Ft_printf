@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/04 16:00:38 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/09/24 04:42:22 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/09/28 03:30:07 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	ft_int(t_data *data, t_option *flag)
 {
 	int		exe;
 	long	exe_for_D;
+	char	*exe_for_x;
 
 	if (flag->speci == 'D' || (flag->speci == 'd' && flag->length == 'l'))
 	{
@@ -71,6 +72,14 @@ void	ft_int(t_data *data, t_option *flag)
 	else
 	{
 		exe = va_arg(*flag->argptr, int);
-		stock(data, filling_int(exe, data, flag), data->i);
+		
+		if (flag->speci == 'x' || flag->speci == 'X')
+		{
+			flag->speci == 'x' ? (exe_for_x = ft_itoa_base(exe, 16, 0)) :
+					 (exe_for_x = ft_itoa_base(exe, 16, 1));
+			filling(exe_for_x, data, flag);
+		}
+		else
+			stock(data, filling_int(exe, data, flag), data->i);
 	}
 }

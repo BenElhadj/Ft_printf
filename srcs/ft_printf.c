@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/03 02:20:55 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/09/21 07:31:18 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/09/28 03:37:38 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ int		find_define(t_option *flag, t_format *fmtptr)
 		fmtptr->i++ ? (flag->space = 1) : 0;
 	while (fmtptr->i <= fmtptr->j && fmtptr->fmt[fmtptr->i] == '0')
 		fmtptr->i++ ? (flag->zero = 1) : 0;
-	fmtptr->i <= fmtptr->j && fmtptr->fmt[fmtptr->i] == '+' ? fmtptr->i++ &&
-		(flag->plus = 1) : 0;
+	while (fmtptr->i <= fmtptr->j && fmtptr->fmt[fmtptr->i] == '+')
+		fmtptr->i++ ? (flag->plus = 1) : 0;
 	while (fmtptr->i <= fmtptr->j && find(FLAGS, fmtptr->fmt[fmtptr->i]))
 		flag->sign = ft_atoi1(fmtptr);
 	fmtptr->i <= fmtptr->j && find(WIDTH, fmtptr->fmt[fmtptr->i]) ?

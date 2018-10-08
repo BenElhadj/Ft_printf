@@ -1,67 +1,57 @@
-CC = gcc
-FLAGS = -Wall -Wextra -Werror
-
-CPP_FLAGS = -Iinclude
-LDFLAGS = -Llibft
-LDLIBS = -lft
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2018/09/27 01:54:04 by bhamdi            #+#    #+#              #
+#    Updated: 2018/09/27 02:31:46 by bhamdi           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
 NAME = libftprintf.a
+CC = clang
+CFLAGS = -g -Werror -Wall -Wextra
 
-NAME_PROJECT = ft_printf
+SRCS_DIR = srcs/
+OBJ_DIR = obj/
 
-SRC_PATH = srcs/
-LIB_PATH = libft
-SRCLIB_PATH = $(LIB_PATH)/srcs
-INC_PATH = includes/
-OBJ_PATH = obj/
-OBJLIB_PATH = libft/obj/
+SRC = ft_flag.c ft_option.c ft_printf.c ft_specifier1.c ft_specifier2.c \
+	  ft_fonction.c ft_fonction1.c ft_fonction2.c
 
-SRC_NAME = ft_flag.c ft_option.c ft_printf.c ft_specifier1.c ft_specifier2.c \
-		   ft_fonction.c ft_fonction1.c ft_fonction2.c 
+OBJ = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 
-LIB_NAME = ft_atoi.c ft_bzero.c ft_space.c ft_isdigit.c ft_memalloc.c \
-		   ft_memset.c ft_strchr.c ft_strlen.c 
+all : $(NAME)
 
-INC_NAME = ft_printf.h
-OBJ_NAME = $(SRC_NAME:.c=.o)
-OBJLIB_NAME = $(LIB_NAME:.c=.o)
-
-SRC = $(addprefix $(SRC_PATH)/, $(SRC_NAME))
-LIB = $(addprefix $(LIB_PATH)/, $(LIB_NAME))
-INC = $(addprefix $(INC_PATH)/, $(INC_NAME))
-
-OBJ = $(addprefix $(OBJ_PATH)/, $(OBJ_NAME))
-OBJLIB = $(addprefix $(OBJLIB_PATH)/, $(OBJLIB_NAME))
-
-all: $(NAME)
-	 
-$(NAME): $(OBJ) $(OBJLIB)
-	@ar rc $(NAME) $(OBJ) $(OBJLIB)
+$(NAME): $(OBJ)
+	
+	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
-	@make -C $(LIB_PATH)
-	@echo "\033[1;34m$(NAME_PROJECT)\t\033[1;33mCompilation\t\033[0;32m[OK]\033[0m"
-	@echo "It's finish !\n\n"
+	
+	@echo "\t\033[1;44mIt's finish\033[0;32m\t\t\t[ √ ]\033[0m\n\n"
 
-$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
-	@mkdir $(OBJ_PATH) 2> /dev/null || true
-	@$(CC) $(FLAGS) -o $@ -c $<
+$(OBJ_DIR)%.o: $(SRCS_DIR)%.c
+	@mkdir -p $(OBJ_DIR)
+	@$(CC) $(CFLAGS) -I includes -c $< -o $@
+	
+	@echo "\033[1;34m$(addprefix)\t\033[1;33mCompilation\t\t\t\033[0;32m[OK]\033[0m"
 
-$(OBJLIB_PATH)/%.o: $(SRCLIB_PATH)/%.c
-	@mkdir $(OBJLIB_PATH) 2> /dev/null || true
-	@$(CC) $(FLAGS) -I libft/includes -o $@ -c $<
+.PHONY: clean fclean
 
 clean:
-	@make -C $(LIB_PATH) clean
-	@rm -rf $(OBJ_PATH)
-	@echo "\033[1;34m$(NAME_PROJECT)\t\033[1;33mCleaning obj\t\033[0;32m[OK]\033[0m"
+	
+#	@make -C $(OBJ) clean		
+	@rm -rf $(OBJ)
+	
+	@echo "\033[1;34m$(NAME_PROJECT)\t\033[1;33mCleaning\tclean OBJ\t\033[0;32m[OK]\033[0m"
+
 
 fclean: clean
-	@make -C libft fclean
-	@rm -f $(NAME)
-	@echo "\033[1;34m$(NAME_PROJECT)\t\033[1;33mCleaning lib\t\033[0;32m[OK]\033[0m"
+	
+#	@make -C $(OBJ) fclean		
+	@rm -rf $(NAME)
+	
+	@echo "\033[1;34m$(NAME_PROJECT)\t\033[1;33mCleaning\t$(NAME)\t\033[0;32m[OK]\033[0m"
 
 re: fclean all
-
-norme:
-	@norminette $(SRC) $(LIB) $(INC)
-	@echo "\033[1;34m$(NAME_PROJECT)\t\033[1;33mNorminette\t\033[0;32m[OK]\033[0m"	

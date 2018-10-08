@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 14:53:26 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/09/24 11:32:24 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/09/28 03:29:12 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	filling(char *exe, t_data *data, t_option *flag)
 {
 	int len;
 	int n;
-
 	flag->sign < 0 ? (n = 1 && (flag->sign *= -1)) : (n = 0);
 	flag->sign -= (len = ft_strlen(exe));
 	while (!n && flag->sign-- > 0 && (stock(data, " \0", 2)));
@@ -33,7 +32,7 @@ void	filling(char *exe, t_data *data, t_option *flag)
 	while (n && flag->sign-- > 0 && (stock(data, " \0", 2)));
 }
 
-char	*filling_int(int exe, t_data *data, t_option *flag)
+char	*filling_int(long exe, t_data *data, t_option *flag)
 {
 	int n;
 	int p;
@@ -48,7 +47,7 @@ char	*filling_int(int exe, t_data *data, t_option *flag)
 				len ? flag->preci - len : 0)))) > 0)
 	{
 		while (!flag->zero && flag->sign-- && (data->exe[data->i++] = ' '));
-		n ? (data->exe[data->i++] = '-') : 0;
+		n ? (data->exe[data->i++] = ' ') : 0;
 		while (flag->zero && flag->sign-- && (data->exe[data->i++] = '0'));
 	}
 	flag->plus == 1 && !n ? (data->exe[data->i++] = '+') : 0;
@@ -56,6 +55,7 @@ char	*filling_int(int exe, t_data *data, t_option *flag)
 	if ((flag->preci -= (len + n)) > 0)
 		while (n ? ((data->exe[data->i++] = '0') && flag->preci--) :
 				(flag->preci-- && (data->exe[data->i++] = '0')));
+	
 	stock_exe(data, ft_itoa1(exe), len);
 	if (p && (flag->sign -= data->i) > 0)
 		while (flag->sign-- && (data->exe[data->i++] = ' '));
@@ -77,11 +77,11 @@ char	*filling_uint(int exe, t_data *data, t_option *flag)
 				len ? flag->preci - len : 0)))) > 0)
 	{
 		while (!flag->zero && flag->sign-- && (data->exe[data->i++] = ' '));
-//		n ? (data->exe[data->i++] = '-') : 0;
+		n ? (data->exe[data->i++] = '-') : 0;
 		while (flag->zero && flag->sign-- && (data->exe[data->i++] = '0'));
 	}
-//	flag->plus == 1 && !n ? (data->exe[data->i++] = '+') : 0;
-//	n && !flag->zero ? (data->exe[data->i++] = '-') : 0;
+	flag->plus == 1 && !n ? (data->exe[data->i++] = '+') : 0;
+	n && !flag->zero ? (data->exe[data->i++] = '-') : 0;
 	if ((flag->preci -= len) > 0)
 		while (n ? ((data->exe[data->i++] = '0') && flag->preci--) :
 				(flag->preci-- && (data->exe[data->i++] = '0')));

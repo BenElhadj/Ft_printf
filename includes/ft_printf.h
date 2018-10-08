@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/03 03:51:41 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/09/21 07:49:58 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/09/28 03:17:08 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void			apply_speci(t_data *data, t_option *flag);
 void			flush_data(t_data *data);
 int				stock(t_data *data, char *fmt, int len);
 void			init_option(t_option *flag, va_list *args, int bt);
-char			*filling_int(int exe, t_data *data, t_option *flag);
+char			*filling_int(long exe, t_data *data, t_option *flag);
 char			*filling_uint(int exe, t_data *data, t_option *flag);
 void			filling(char *exe, t_data *data, t_option *flag);
 void			ft_percent(t_data *data, t_option *flag);

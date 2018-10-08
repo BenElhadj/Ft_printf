@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 06:02:29 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/09/24 05:01:24 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/09/28 03:28:59 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@ char	*ft_itoa2(double n)
 
 char	*ft_itoa1(long long n)
 {
-	char	*ret;
-	int		temp_n;
-	int		len;
-	char	sign;
+	char			*ret;
+	long long		temp_n;
+	int				len;
+	char			sign;
 
 	sign = (n < 0) ? -1 : 1;
 	len = 2 + (n < 0);
