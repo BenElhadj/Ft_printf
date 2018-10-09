@@ -6,13 +6,13 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/19 01:32:25 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/09/24 04:56:47 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/10/09 07:26:10 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+void	*ft_memset(void *b, long long c, size_t len)
 {
 	char *str;
 

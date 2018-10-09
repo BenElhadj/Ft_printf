@@ -6,30 +6,33 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 21:47:52 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/09/21 05:12:00 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/10/09 18:01:12 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int		error(int j)
+void		init_type(t_type *type)
 {
-/*
-** 	j == 1 ? ft_putendl("\nneed specifier after parametre or %\n") : 0;
-**	j == 2 ? ft_putendl("\ndo you mean for the length 'hh'\n") : 0;
-**	j == 3 ? ft_putendl("\ndo you mean for the length 'll'\n") : 0;
-**	j == 4 ? ft_putendl("\nerror need va_arg\n") : 0;
-*/
+//	ft_memset(type->type, (int)"\0", ft_intlen(exe_i));
 
-	j == 5 ? ft_putstr("error") : 0;
-
-/*
-**	j == 6 ? ft_putendl("error") : 0;
-**	j == 7 ? ft_putendl("error") : 0;
-**
-** 	exit(0);
-*/
-	return (0);
+	type->exe_i		= 0;
+	type->exe_sh	= 0;
+	type->exe_c		= 0;
+	type->exe_l		= 0;
+	type->exe_ll	= 0;
+	type->exe_im	= 0;
+	type->exe_si	= 0;
+	type->exe_ui	= 0;
+	type->exe_ush	= 0;
+	type->exe_uc	= 0;
+	type->exe_ul	= 0;
+	type->exe_ull	= 0;
+//	type->exe_uim	= 0;
+	type->exe_d		= 0;
+	type->exe_ld	= 0;
+	type->exe_int	= 0;
+	type->exe_void	= 0;
 }
 
 int		ft_intlen(long long int n)
@@ -78,7 +81,7 @@ void	init_option(t_option *flag, va_list *args, int bt)
 	flag->plus = 0;
 	flag->sign = 0;
 	flag->width = 0;
-	flag->preci = 0;
+	flag->preci = -1;
 	flag->length = '\0';
 	flag->speci = '\0';
 	bt == 1 ? flag->argptr = args : 0;

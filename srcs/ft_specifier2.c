@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 20:42:15 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/09/21 00:44:24 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/10/09 12:14:45 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,22 @@
 
 void	ft_uint(t_data *data, t_option *flag)
 {
-	int				len;
-	unsigned int	exe;
+	int					len;
+	unsigned long long	exe;
 
 	len = 0;
-	exe = va_arg(*flag->argptr, unsigned int);
-	len = ft_intlen(exe);
-	stock(data, filling_int(exe, data, flag), data->i);
-//	filling(ft_itoa1(exe), data, flag);
+	if (flag->speci == 'U' || (flag->speci == 'u' &&
+				(flag->length == 'l' || flag->length == 'L')))
+	{
+		exe = va_arg(*flag->argptr,unsigned long long);
+		stock(data, filling_ull(exe, data, flag), data->i);
+	}
+	else
+	{
+		exe = va_arg(*flag->argptr, unsigned long);
+		len = ft_intlen(exe);
+		stock(data, filling_ul(exe, data, flag), data->i);
+	}
 }
 
 /*

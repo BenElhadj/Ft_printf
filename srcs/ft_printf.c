@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/03 02:20:55 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/09/28 03:37:38 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/10/09 17:56:45 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int		find_define(t_option *flag, t_format *fmtptr)
 		fmtptr->i++) ? flag->length = 'L' : 0;
 	}
 	find(SPECIFIER, fmtptr->fmt[fmtptr->i]) ? flag->speci = find(SPECIFIER,
-			fmtptr->fmt[fmtptr->i]) : fmtptr->i-- && error(1);
+			fmtptr->fmt[fmtptr->i]) : fmtptr->i--;
 	return (fmtptr->i);
 }
 
@@ -73,8 +73,8 @@ void	apply_speci(t_data *data, t_option *flag)
 	flag->speci == '%' ? ft_percent(data, flag) : 0;
 	flag->speci == 'c' ? ft_char(data, flag) : 0;
 	flag->speci == 's' ? ft_str(data, flag) : 0;
-	find("dDioxX", flag->speci) ? ft_int(data, flag) : 0;
-	flag->speci == 'u' ? ft_uint(data, flag) : 0;
+	find("dDioOxX", flag->speci) ? ft_int(data, flag) : 0;
+	find("uU", flag->speci) ? ft_uint(data, flag) : 0;
 	find("fFeEaAgG", flag->speci) ? ft_double(data, flag) : 0;
 	flag->speci == 'n' ? ft_pint(data, flag) : 0;
 	flag->speci == 'p' ? ft_void(data, flag) : 0;

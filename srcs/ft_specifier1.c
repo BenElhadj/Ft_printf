@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/04 16:00:38 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/09/28 03:30:07 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/10/09 19:07:25 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,31 +55,63 @@ void	ft_str(t_data *data, t_option *flag)
 }
 
 /*
-**%dioxXD
+**%dDioOxXD
 */
 
 void	ft_int(t_data *data, t_option *flag)
 {
-	int		exe;
-	long	exe_for_D;
-	char	*exe_for_x;
+	init_type(&data->type);
 
-	if (flag->speci == 'D' || (flag->speci == 'd' && flag->length == 'l'))
+	!flag->length && find("dio", flag->speci) ? stock(data, 
+			filling_i((data->type.exe_i = va_arg(*flag->argptr, int)), 
+				data, flag), data->i) : 0;
+	   	
+	(flag->length == 'h') && find("dio", flag->speci) ? stock(data, 
+			filling_sh((data->type.exe_sh = va_arg(*flag->argptr, int)), 
+				data, flag), data->i) : 0;
+	
+	(flag->length == 'H') && find("dio", flag->speci) ? stock(data, 
+			filling_c((data->type.exe_c = va_arg(*flag->argptr, int)), 
+				data, flag), data->i) : 0;
+	
+	(flag->length == 'l') && find("dio", flag->speci) ? stock(data, 
+			filling_l((data->type.exe_l = va_arg(*flag->argptr, long)), 
+				data, flag), data->i) : 0;
+	
+	(flag->length == 'L') && find("dio", flag->speci) ? stock(data, 
+			filling_ll((data->type.exe_ll = va_arg(*flag->argptr, long long)), 
+				data, flag), data->i) : 0;
+	
+	(flag->length == 'j') && find("dio", flag->speci) ? stock(data, 
+			filling_im((data->type.exe_im = va_arg(*flag->argptr, intmax_t)), 
+				data, flag), data->i) : 0;
+	
+	(flag->length == 'z') && find("dio", flag->speci) ? stock(data, 
+			filling_si((data->type.exe_si = va_arg(*flag->argptr, size_t)), 
+				data, flag), data->i) : 0;
+	
+	
+/*	
+	if (find("DO", flag->speci) || (find("ido", flag->speci)
+				&& find("lL", flag->length)))
 	{
-		exe_for_D = va_arg(*flag->argptr, long);
-		stock(data, filling_int(exe_for_D, data, flag), data->i);
+		exe_int = va_arg(*flag->argptr, long long);
+		flag->speci == 'o' ? exe_int = ft_atoi(ft_itoa_base(exe_int, 8, 0)) : 0;
+		flag->speci == 'O' ? exe_int = ft_atoi(ft_itoa_base(exe_int, 8, 0)) : 0;
+
+		stock(data, filling_int(exe_int, data, flag), data->i);
 	}
+	else if (flag->speci == 'x' || flag->speci == 'X')
+		{
+			exe = va_arg(*flag->argptr, int);
+			flag->speci == 'x' ? (exe_char = ft_itoa_base(exe, 16, 0)) :
+					 (exe_char = ft_itoa_base(exe, 16, 1));
+			filling(exe_char, data, flag);
+		}
 	else
 	{
-		exe = va_arg(*flag->argptr, int);
-		
-		if (flag->speci == 'x' || flag->speci == 'X')
-		{
-			flag->speci == 'x' ? (exe_for_x = ft_itoa_base(exe, 16, 0)) :
-					 (exe_for_x = ft_itoa_base(exe, 16, 1));
-			filling(exe_for_x, data, flag);
-		}
-		else
-			stock(data, filling_int(exe, data, flag), data->i);
+		stock(data, filling_int((exe = va_arg(*flag->argptr, int)),
+					data, flag), data->i);
 	}
+	exe_char ? (free(exe_char)) : 0;*/
 }
