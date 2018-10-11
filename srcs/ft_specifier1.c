@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/04 16:00:38 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/10/11 17:46:17 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/10/11 19:59:55 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,9 @@ void	ft_char(t_data *data, t_option *flag)
 
 void	ft_str(t_data *data, t_option *flag)
 {
-	int		len;
 	char	*exe;
 
-	len = 0;
 	exe = (char*)va_arg(*flag->argptr, char*);
-	exe == NULL ? exe = "(null)" : 0;
-	while (exe[len])
-		len++;
 	filling(exe, data, flag);
 }
 
