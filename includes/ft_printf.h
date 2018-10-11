@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/03 03:51:41 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/10/09 18:47:40 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/10/11 03:34:00 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,12 +95,9 @@ void			flush_data(t_data *data);
 int				stock(t_data *data, char *fmt, int len);
 void			init_option(t_option *flag, va_list *args, int bt);
 char			*filling_i(int exe, t_data *data, t_option *flag);
-char			*filling_sh(short exe, t_data *data, t_option *flag);
-char			*filling_c(char exe, t_data *data, t_option *flag);
 char			*filling_l(long exe, t_data *data, t_option *flag);
 char			*filling_ll(long long exe, t_data *data, t_option *flag);
 char			*filling_im(intmax_t exe, t_data *data, t_option *flag);
-char			*filling_si(size_t exe, t_data *data, t_option *flag);
 char			*filling_uint(unsigned int exe, t_data *data, t_option *flag);
 char			*filling_ul(unsigned long exe, t_data *data, t_option *flag);
 char			*filling_ull(unsigned long long exe, t_data *data, t_option 
@@ -114,11 +111,12 @@ void			ft_uint(t_data *data, t_option *flag);
 void			ft_double(t_data *data, t_option *flag);
 void			ft_pint(t_data *data, t_option *flag);
 void			ft_void(t_data *data, t_option *flag);
-int				ft_intlen(long long int n);
+int				ft_intlen(unsigned long long n);
 long			ft_atoi(char *str);
 long			ft_atoi1(t_format *fmtptr);
 char			*ft_itoa1(long long n);
-char			*ft_itoa2(double n);
+char			*ft_itoa3(unsigned long long n);
+//char			*ft_itoa2(double n);
 void			space(char *exe, t_data *data, t_option *flag);
 int				ft_pow(int nb, int pow);
 char			*ft_itoa_base(int val, int base, int up);

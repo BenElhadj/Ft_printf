@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 20:42:15 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/10/09 12:14:45 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/10/11 02:34:16 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,26 @@ void	ft_uint(t_data *data, t_option *flag)
 	unsigned long long	exe;
 
 	len = 0;
-	if (flag->speci == 'U' || (flag->speci == 'u' &&
-				(flag->length == 'l' || flag->length == 'L')))
+	if (flag->speci == 'U' || (flag->speci == 'u' && flag->length == 'l'))
 	{
-		exe = va_arg(*flag->argptr,unsigned long long);
+		exe = (unsigned long)va_arg(*flag->argptr,unsigned long);
+		stock(data, filling_ul(exe, data, flag), data->i);
+	}
+	else if (flag->speci == 'u' && flag->length == 'L')
+	{
+		exe = (unsigned long long)va_arg(*flag->argptr,unsigned long long);
 		stock(data, filling_ull(exe, data, flag), data->i);
+	}
+	else if (flag->speci == 'u' && flag->length == 'z')
+	{
+		exe = (size_t)va_arg(*flag->argptr,size_t);
+		stock(data, filling_ul(exe, data, flag), data->i);
 	}
 	else
 	{
-		exe = va_arg(*flag->argptr, unsigned long);
+		exe = (unsigned int)va_arg(*flag->argptr, unsigned int);
 		len = ft_intlen(exe);
-		stock(data, filling_ul(exe, data, flag), data->i);
+		stock(data, filling_uint(exe, data, flag), data->i);
 	}
 }
 
@@ -48,7 +57,7 @@ void	ft_double(t_data *data, t_option *flag)
 	len = 0;
 	exe = va_arg(*flag->argptr, double);
 	len = ft_intlen(exe);
-	filling(ft_itoa2(exe), data, flag);
+	filling(ft_itoa3((unsigned long long)exe), data, flag);
 }
 
 /*

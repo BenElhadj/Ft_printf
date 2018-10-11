@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/19 01:32:25 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/10/09 05:47:13 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/10/11 01:57:40 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_putstr(char *str)
 long		ft_atoi(char *str)
 {
 	int	i;
-	int	result;
+	long long	result;
 	int	sign;
 
 	result = 0;

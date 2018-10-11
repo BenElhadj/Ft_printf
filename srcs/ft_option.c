@@ -6,42 +6,18 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 21:47:52 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/10/09 18:01:12 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/10/11 03:37:05 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void		init_type(t_type *type)
-{
-//	ft_memset(type->type, (int)"\0", ft_intlen(exe_i));
-
-	type->exe_i		= 0;
-	type->exe_sh	= 0;
-	type->exe_c		= 0;
-	type->exe_l		= 0;
-	type->exe_ll	= 0;
-	type->exe_im	= 0;
-	type->exe_si	= 0;
-	type->exe_ui	= 0;
-	type->exe_ush	= 0;
-	type->exe_uc	= 0;
-	type->exe_ul	= 0;
-	type->exe_ull	= 0;
-//	type->exe_uim	= 0;
-	type->exe_d		= 0;
-	type->exe_ld	= 0;
-	type->exe_int	= 0;
-	type->exe_void	= 0;
-}
-
-int		ft_intlen(long long int n)
+int		ft_intlen(unsigned long long n)
 {
 	int		i;
 
 	i = 0;
 	n <= 0 ? i++ : 0;
-	n < 0 ? n *= -1 : 0;
 	while (n > 0)
 	{
 		n /= 10;
@@ -85,4 +61,24 @@ void	init_option(t_option *flag, va_list *args, int bt)
 	flag->length = '\0';
 	flag->speci = '\0';
 	bt == 1 ? flag->argptr = args : 0;
+}
+
+void		init_type(t_type *type)
+{
+	type->exe_i		= 0;
+	type->exe_sh	= 0;
+	type->exe_c		= 0;
+	type->exe_l		= 0;
+	type->exe_ll	= 0;
+	type->exe_im	= 0;
+	type->exe_si	= 0;
+	type->exe_ui	= 0;
+	type->exe_ush	= 0;
+	type->exe_uc	= 0;
+	type->exe_ul	= 0;
+	type->exe_ull	= 0;
+	type->exe_d		= 0;
+	type->exe_ld	= 0;
+	type->exe_int	= 0;
+	type->exe_void	= 0;
 }
