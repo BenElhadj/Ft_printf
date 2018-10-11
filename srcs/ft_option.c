@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 21:47:52 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/10/11 03:37:05 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/10/11 16:46:02 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,14 @@ int		stock(t_data *data, char *fmt, int len)
 
 	i = 0;
 	while (fmt[i] && i < len)
+	{
+		data->index == SIZEBUF ? flush_data(data) : 0;
+		data->data[data->index] = fmt[i];
+		i++;
+		data->index++;
+		data->len++;
+	}
+	if (fmt[0] == 0 && fmt[1] == 0) 
 	{
 		data->index == SIZEBUF ? flush_data(data) : 0;
 		data->data[data->index] = fmt[i];

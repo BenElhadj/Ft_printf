@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/04 16:00:38 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/10/11 15:40:20 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/10/11 17:46:17 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,6 @@
 
 void	ft_percent(t_data *data, t_option *flag)
 {
-	char	exe;
-
-	exe = '%';
 	filling("%\0", data, flag);
 }
 
@@ -33,7 +30,6 @@ void	ft_char(t_data *data, t_option *flag)
 	char	exe[2];
 
 	exe[0] = (char)va_arg(*flag->argptr, int);
-	//exe[0] == '\0' ? exe[0] == 0 : 0;
 	exe[1] = '\0';
 	filling(exe, data, flag);
 }
