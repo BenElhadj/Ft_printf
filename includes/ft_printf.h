@@ -6,13 +6,14 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/03 03:51:41 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/10/11 03:34:00 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/10/14 07:37:32 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
+# include <limits.h>
 # include <fcntl.h>
 # include <stdint.h>
 # include <unistd.h>
@@ -39,6 +40,7 @@ typedef struct	s_type
 	int					exe_i;
 	short				exe_sh;
 	char				exe_c;
+	char				*exe_str;
 	long				exe_l;
 	long long			exe_ll;
 	intmax_t			exe_im;
@@ -48,7 +50,6 @@ typedef struct	s_type
 	unsigned char		exe_uc;
 	unsigned long		exe_ul;
 	unsigned long long	exe_ull;
-//	unsigned intmax_t	exe_uim;
 	double				exe_d;
 	long double			exe_ld;
 	int					*exe_int;

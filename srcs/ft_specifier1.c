@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/04 16:00:38 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/10/11 19:59:55 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/10/14 07:33:59 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,22 +54,27 @@ void	ft_int(t_data *data, t_option *flag)
 {
 	init_type(&data->type);
 
-	!flag->length && find("dioOxX", flag->speci) ? stock(data, 
+	!flag->length && find("di", flag->speci) ? stock(data, 
 			filling_i((data->type.exe_i = va_arg(*flag->argptr, int)), 
 				data, flag), data->i) : 0;
 
 	if (!flag->length && find("oO", flag->speci))
 	{
+		int nb;
+		nb = va_arg(*flag->argptr, int);
+		nb > 0 ? (data->type.exe_i = nb) : (data->type.exe_i = 
+				(37777777778 - nb));
 		data->type.exe_i = ft_atoi(ft_itoa_base(data->type.exe_i, 8, 0));
 		stock(data, filling_i(data->type.exe_i, data, flag), data->i);
 	}
 
 	if (!flag->length && find("xX", flag->speci))
 	{
-		flag->speci == 'x' ? (data->type.exe_i = ft_atoi(ft_itoa_base(
-					data->type.exe_i, 16, 0))) : (data->type.exe_i = ft_atoi(
-					ft_itoa_base(data->type.exe_i, 16, 1)));
-		filling_i(data->type.exe_i, data, flag);
+		data->type.exe_i = (unsigned int)va_arg(*flag->argptr, unsigned int);
+		flag->speci == 'x' ? (data->type.exe_str = ft_itoa_base(data->type.exe_i
+					, 16, 0)) : (data->type.exe_str = ft_itoa_base(
+						data->type.exe_i, 16, 1));
+		filling(data->type.exe_str, data, flag);
 	}
 
 	(flag->length == 'h') && find("di", flag->speci) ? stock(data, 

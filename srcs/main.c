@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 18:07:53 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/10/11 20:20:37 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/10/14 06:54:13 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ int		main(void)
 	int r1 = 0, r2 = 0, x1 = 0, x2 = 0;
 	//printf("TEST Nº : 1\n\n");
 
-/*	r1 = 	printf("VR:: [%-5.s\n***]\n", "yooo");
-	r2 = ft_printf("ME:: [%-5.s\n***]\n", "yooo");
+	r1 = 	printf("VR:: [%o]\n", -284);
+	r2 = ft_printf("ME:: [%o]\n", -284);
 	printf("[VR][%d] - [ME][%d]\n", r1, r2);
-*/
+
 	printf("\nTEST Nº : 2\n\n");
 
-	x1 = 	printf("VR:: [%s]\n", NULL);
-	x2 = ft_printf("ME:: [%s]\n", NULL);
+	x1 = 	printf("VR:: [%x]\n", -207);
+	x2 = ft_printf("ME:: [%x]\n", -207);
 	printf("[VR][%d] - [ME][%d]\n", x1, x2);
 
 	printf("\nTEST Nº : 3\n\n");

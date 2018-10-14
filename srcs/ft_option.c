@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 21:47:52 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/10/11 16:46:02 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/10/14 04:45:23 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void		init_type(t_type *type)
 	type->exe_i		= 0;
 	type->exe_sh	= 0;
 	type->exe_c		= 0;
+	type->exe_str	= 0;
 	type->exe_l		= 0;
 	type->exe_ll	= 0;
 	type->exe_im	= 0;
