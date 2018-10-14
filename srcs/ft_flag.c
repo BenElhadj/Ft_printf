@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 14:53:26 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/10/14 04:30:44 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/10/14 11:34:11 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@ void	filling(char *exe, t_data *data, t_option *flag)
 
 	flag->sign < 0 ? (n = 1 && (flag->sign *= -1)) : (n = 0);
 	(flag->speci == 's' && exe == 0) ? ((exe = "(null)") && (len = 5)) : 0;
-	(flag->speci == 's' && flag->preci >= 0) ? (len = flag->preci) && 
-		(flag->sign -= len) : (flag->sign -= (len = ft_strlen(exe)));
+	(len = ft_strlen(exe)) > flag->preci ? len = flag->preci : 0;
+	(flag->speci == 's' && flag->preci >= 0) ? flag->sign -= len : 
+		(flag->sign -= (len = ft_strlen(exe)));
 	(flag->speci == 'c' && (exe[0] == 0 && exe[1] == 0)) ? flag->sign-- : 0;
 	while (!n && flag->sign-- > 0)
 	{
