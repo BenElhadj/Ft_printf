@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 20:42:15 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/10/11 02:34:16 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/10/16 14:56:27 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,17 @@ void	ft_pint(t_data *data, t_option *flag)
 
 void	ft_void(t_data *data, t_option *flag)
 {
-	int				len;
-	unsigned int	*exe;
+	int n;
+	int len;
 
 	len = 0;
-	exe = va_arg(*flag->argptr, unsigned int*);
-	len = ft_intlen((long)exe);
-	filling(ft_itoa1((long)exe), data, flag);
+	flag->sign < 0 ? (n = 1 && (flag->sign *= -1)) : (n = 0);
+	data->type.exe_ll = (int64_t)va_arg(*flag->argptr, void*);
+	data->type.exe_str = ft_lltoa_base(data->type.exe_ll, 16, 0);
+	while (data->type.exe_str[len++]);
+	flag->sign -= (len + 1);
+	while (!n && flag->sign-- > 0 && (stock(data, " ", 1)));
+	stock(data, "0x", 2);
+	stock(data, data->type.exe_str, len);
+	while (n && flag->sign-- > 0 && (stock(data, " ", 1)));
 }

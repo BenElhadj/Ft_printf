@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/03 03:51:41 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/10/14 08:36:03 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/10/16 14:16:31 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,10 +117,10 @@ long			ft_atoi(char *str);
 long			ft_atoi1(t_format *fmtptr);
 char			*ft_itoa1(long long n);
 char			*ft_itoa3(unsigned long long n);
-//char			*ft_itoa2(double n);
 void			space(char *exe, t_data *data, t_option *flag);
 int				ft_pow(int nb, int pow);
 char			*ft_itoa_base(int val, int base, int up);
+char			*ft_lltoa_base(unsigned long long val, long base, int up);
 void			stock_exe(t_data *data, char *txt, int len);
 void			*ft_memset(void *b, long long c, size_t len);
 char			*ft_strjoin(char const *s1, char const *s2);

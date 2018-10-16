@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/19 01:32:25 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/10/14 08:46:35 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/10/16 14:43:43 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ char	*ft_itoa_base(int val, int base, int up)
 {
 	int		i;
 	int		n;
-	char	*nbr;
+	char	*mall;
+	char	*ret;
 	char	c;
 
 	i = 1;
@@ -35,17 +36,19 @@ char	*ft_itoa_base(int val, int base, int up)
 		base == 10 ? ((n = 1) && (val *= -1)) : 0;
 	while (ft_pow(base, i) - 1 < val)
 		i++;
-	if ((nbr = (char*)malloc(sizeof(nbr) * i)) == NULL)
+	if ((mall = (char*)malloc(sizeof(mall) * i)) == NULL)
 		return (NULL);
-	nbr[i + n] = '\0';
+	mall[i + n] = '\0';
 	while (i-- > 0)
 	{
-		nbr[i + n] = (val % base) + (val % base > 9 ? c - 10 : '0');
+		mall[i + n] = (val % base) + (val % base > 9 ? c - 10 : '0');
 		val = val / base;
 	}
 	if (n)
-		nbr[0] = '-';
-	return (nbr);
+		mall[0] = '-';
+	ret = mall;
+	free (mall);
+	return (ret);
 }
 
 void	*ft_memset(void *b, long long c, size_t len)
@@ -63,19 +66,22 @@ void	*ft_memset(void *b, long long c, size_t len)
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*str;
+	char	*mall;
+	char	*ret;
 	size_t	len_s1;
 	size_t	len_s2;
 
 	len_s1 = s1 ? ft_strlen(s1) : 0;
 	len_s2 = s2 ? ft_strlen(s2) : 0;
-	str = (char *)malloc(sizeof(*str) * (len_s1 + len_s2 + 1));
+	mall = (char *)malloc(sizeof(*mall) * (len_s1 + len_s2 + 1));
 	if (s1)
-		ft_strcpy(str, s1);
+		ft_strcpy(mall, s1);
 	if (s2)
-		ft_strcpy(str + len_s1, s2);
-	str[len_s1 + len_s2] = '\0';
-	return (str);
+		ft_strcpy(mall + len_s1, s2);
+	mall[len_s1 + len_s2] = '\0';
+	ret = mall;
+	free (mall);
+	return (ret);
 }
 
 size_t	ft_strlen(const char *str)

@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/04 16:00:38 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/10/14 07:33:59 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/10/16 18:14:03 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +58,25 @@ void	ft_int(t_data *data, t_option *flag)
 			filling_i((data->type.exe_i = va_arg(*flag->argptr, int)), 
 				data, flag), data->i) : 0;
 
-	if (!flag->length && find("oO", flag->speci))
+	if (find("oO", flag->speci))
 	{
-		int nb;
-		nb = va_arg(*flag->argptr, int);
-		nb > 0 ? (data->type.exe_i = nb) : (data->type.exe_i = 
-				(37777777778 - nb));
-		data->type.exe_i = ft_atoi(ft_itoa_base(data->type.exe_i, 8, 0));
-		stock(data, filling_i(data->type.exe_i, data, flag), data->i);
+		if (!flag->length)
+		{
+			data->type.exe_ll = va_arg(*flag->argptr, long long);
+			data->type.exe_ll = ft_atoi(ft_lltoa_base(data->type.exe_ll, 8, 0));
+			flag->sharp && data->type.exe_ll ? stock(data, "0", 1): 0;
+			stock(data, filling_ll(data->type.exe_ll, data, flag), data->i);
+		}
+		else if (flag->length == 'H')
+		{
+			data->type.exe_l = (char)va_arg(*flag->argptr, int);
+			data->type.exe_c = ft_atoi(ft_lltoa_base(data->type.exe_l, 8, 0));
+			flag->sharp && data->type.exe_c ? stock(data, "0", 1): 0;
+			stock(data, filling_ll(data->type.exe_c, data, flag), data->i);
+		}
 	}
 
+	
 	if (!flag->length && find("xX", flag->speci))
 	{
 		data->type.exe_i = (unsigned int)va_arg(*flag->argptr, unsigned int);
@@ -103,27 +112,4 @@ void	ft_int(t_data *data, t_option *flag)
 				data, flag), data->i) : 0;
 	
 	
-/*	
-	if (find("oO", flag->speci) || (find("ido", flag->speci)
-				&& find("lL", flag->length)))
-	{
-		exe_int = va_arg(*flag->argptr, long long);
-		flag->speci == 'o' ? exe_int = ft_atoi(ft_itoa_base(exe_int, 8, 0)) : 0;
-		flag->speci == 'O' ? exe_int = ft_atoi(ft_itoa_base(exe_int, 8, 0)) : 0;
-
-		stock(data, filling_int(exe_int, data, flag), data->i);
-	}
-	else if (flag->speci == 'x' || flag->speci == 'X')
-		{
-			exe = va_arg(*flag->argptr, int);
-			flag->speci == 'x' ? (exe_char = ft_itoa_base(exe, 16, 0)) :
-					 (exe_char = ft_itoa_base(exe, 16, 1));
-			filling(exe_char, data, flag);
-		}
-	else
-	{
-		stock(data, filling_int((exe = va_arg(*flag->argptr, int)),
-					data, flag), data->i);
-	}
-	exe_char ? (free(exe_char)) : 0;*/
 }
