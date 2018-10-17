@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/04 16:00:38 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/10/17 11:37:57 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/10/17 18:39:41 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,22 +60,14 @@ void	ft_int(t_data *data, t_option *flag)
 			filling_i((data->type.exe_i = va_arg(*flag->argptr, int)), 
 				data, flag), data->i) : 0;
 
-	if (find("oO", flag->speci))
-	{
-		i = (flag->speci == 'O' ? 1: 0); 
-		if (!flag->length)
-		flag->sharp && data->type.exe_ll ? stock(data, "0", 1): 0;
-		stock(data, filling_l(ft_atoi(ft_lltoa_base(va_arg(*flag->argptr,
-								long long), 8, i)), data, flag), data->i);
-	}
-
 	if (find("xX", flag->speci))
 	{
 		i = (flag->speci == 'X' ? 1: 0); 
 		if (!flag->length)
-		filling(ft_itoa_base(va_arg(*flag->argptr, unsigned int), 16, i),
+		filling(ft_lltoa_base(va_arg(*flag->argptr, unsigned long), 16, i),
 				data, flag);
 	}
+
 
 	(flag->length == 'h') && find("di", flag->speci) ? stock(data, 
 			filling_i((data->type.exe_sh = (short)va_arg(*flag->argptr, int)), 
@@ -103,4 +95,16 @@ void	ft_int(t_data *data, t_option *flag)
 				data, flag), data->i) : 0;
 	
 	
+	if (find("oO", flag->speci))
+	{
+
+		if (flag->length == 'L')
+			data->type.exe_ull = ft_atoll(ft_lltoa_base((unsigned long long)
+						va_arg(*flag->argptr, unsigned long long), 8, 0));
+		else
+			data->type.exe_ul = ft_atol(ft_lltoa_base((unsigned long)va_arg(
+						*flag->argptr, unsigned long), 8, 0));
+		flag->sharp && data->type.exe_ul ? stock(data, "0", 1): 0;
+		stock(data, (filling_ul(data->type.exe_ul, data, flag)), data->i);
+	}
 }

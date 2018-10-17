@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 14:53:26 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/10/17 09:11:08 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/10/17 12:01:34 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -249,7 +249,7 @@ char	*filling_ull(unsigned long long exe, t_data *data, t_option *flag)
 	if ((flag->preci -= len) > 0)
 		while (1 ? ((data->exe[data->i++] = '0') && --flag->preci) :
 				(flag->preci-- && (data->exe[data->i++] = '0')));
-	stock_exe(data, ft_ulltoa(exe), ft_intlen(ft_atoi(ft_ulltoa(exe))));
+	stock_exe(data, ft_ulltoa(exe), ft_intlen(ft_atol(ft_ulltoa(exe))));
 	if (p && (flag->sign -= data->i) > 0)
 		while (flag->sign-- && (data->exe[data->i++] = ' '));
 
