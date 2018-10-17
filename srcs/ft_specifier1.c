@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/04 16:00:38 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/10/17 09:10:36 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/10/17 11:37:57 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void	ft_str(t_data *data, t_option *flag)
 
 void	ft_int(t_data *data, t_option *flag)
 {
+	int i;
+
 	init_type(&data->type);
 
 	!flag->length && find("di", flag->speci) ? stock(data, 
@@ -60,37 +62,19 @@ void	ft_int(t_data *data, t_option *flag)
 
 	if (find("oO", flag->speci))
 	{
+		i = (flag->speci == 'O' ? 1: 0); 
 		if (!flag->length)
-		{
-			data->type.exe_ll = va_arg(*flag->argptr, long long);
-			data->type.exe_ll = ft_atoi(ft_lltoa_base(data->type.exe_ll, 8, 0));
-			flag->sharp && data->type.exe_ll ? stock(data, "0", 1): 0;
-			stock(data, filling_ll(data->type.exe_ll, data, flag), data->i);
-		}
-		else if (flag->length == 'H')
-		{
-			data->type.exe_ll = (int64_t)va_arg(*flag->argptr, int64_t);
-			data->type.exe_c = ft_atoi(ft_lltoa_base(data->type.exe_ll, 8, 0));
-			flag->sharp && data->type.exe_c ? stock(data, "0", 1): 0;
-			stock(data, filling_ll(data->type.exe_c, data, flag), data->i);
-		}
+		flag->sharp && data->type.exe_ll ? stock(data, "0", 1): 0;
+		stock(data, filling_l(ft_atoi(ft_lltoa_base(va_arg(*flag->argptr,
+								long long), 8, i)), data, flag), data->i);
 	}
 
-	
 	if (find("xX", flag->speci))
 	{
-		int i;
-
 		i = (flag->speci == 'X' ? 1: 0); 
-
 		if (!flag->length)
-		{
-			data->type.exe_ui =(unsigned int)va_arg(*flag->argptr,unsigned int);
-			data->type.exe_str = ft_itoa_base(data->type.exe_ui, 16, i);
-		}
-
-
-		filling(data->type.exe_str, data, flag);
+		filling(ft_itoa_base(va_arg(*flag->argptr, unsigned int), 16, i),
+				data, flag);
 	}
 
 	(flag->length == 'h') && find("di", flag->speci) ? stock(data, 
