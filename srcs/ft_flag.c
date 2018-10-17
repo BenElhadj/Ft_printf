@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 14:53:26 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/10/14 11:34:11 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/10/17 09:11:08 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ char	*filling_i(int exe, t_data *data, t_option *flag)
 	if ((flag->preci -= (len + n)) > 0)
 		while (n ? ((data->exe[data->i++] = '0') && flag->preci--) :
 				(flag->preci-- && (data->exe[data->i++] = '0')));
-	stock_exe(data, ft_itoa1(exe), len);
+	stock_exe(data, ft_lltoa(exe), len);
 	if (p && (flag->sign -= data->i) > 0)
 		while (flag->sign-- && (data->exe[data->i++] = ' '));
 	
@@ -103,7 +103,7 @@ char	*filling_l(long exe, t_data *data, t_option *flag)
 	if ((flag->preci -= (len + n)) > 0)
 		while (n ? ((data->exe[data->i++] = '0') && flag->preci--) :
 				(flag->preci-- && (data->exe[data->i++] = '0')));
-	stock_exe(data, ft_itoa1(exe), len);
+	stock_exe(data, ft_lltoa(exe), len);
 	if (p && (flag->sign -= data->i) > 0)
 		while (flag->sign-- && (data->exe[data->i++] = ' '));
 	
@@ -136,7 +136,7 @@ char	*filling_ll(long long exe, t_data *data, t_option *flag)
 	if ((flag->preci -= (len + n)) > 0)
 		while (n ? ((data->exe[data->i++] = '0') && flag->preci--) :
 				(flag->preci-- && (data->exe[data->i++] = '0')));
-	stock_exe(data, ft_itoa1(exe), len);
+	stock_exe(data, ft_lltoa(exe), len);
 	if (p && (flag->sign -= data->i) > 0)
 		while (flag->sign-- && (data->exe[data->i++] = ' '));
 	
@@ -169,7 +169,7 @@ char	*filling_im(intmax_t exe, t_data *data, t_option *flag)
 	if ((flag->preci -= (len + n)) > 0)
 		while (n ? ((data->exe[data->i++] = '0') && flag->preci--) :
 				(flag->preci-- && (data->exe[data->i++] = '0')));
-	stock_exe(data, ft_itoa1(exe), len);
+	stock_exe(data, ft_lltoa(exe), len);
 	if (p && (flag->sign -= data->i) > 0)
 		while (flag->sign-- && (data->exe[data->i++] = ' '));
 	
@@ -195,7 +195,7 @@ char	*filling_uint(unsigned int exe, t_data *data, t_option *flag)
 	if ((flag->preci -= len) > 0)
 		while (1 ? ((data->exe[data->i++] = '0') && --flag->preci) :
 				(flag->preci-- && (data->exe[data->i++] = '0')));
-	stock_exe(data, ft_itoa3(exe), /*ft_intlen(ft_atoi(ft_itoa3(exe)))*/len);
+	stock_exe(data, ft_ulltoa(exe),len);
 	if (p && (flag->sign -= data->i) > 0)
 		while (flag->sign-- && (data->exe[data->i++] = ' '));
 
@@ -222,7 +222,7 @@ char	*filling_ul(unsigned long exe, t_data *data, t_option *flag)
 	if ((flag->preci -= len) > 0)
 		while (1 ? ((data->exe[data->i++] = '0') && --flag->preci) :
 				(flag->preci-- && (data->exe[data->i++] = '0')));
-	stock_exe(data, ft_itoa3(exe), /*ft_intlen(ft_atoi(ft_itoa3(exe)))*/len);
+	stock_exe(data, ft_ulltoa(exe), len);
 	if (p && (flag->sign -= data->i) > 0)
 		while (flag->sign-- && (data->exe[data->i++] = ' '));
 
@@ -249,7 +249,7 @@ char	*filling_ull(unsigned long long exe, t_data *data, t_option *flag)
 	if ((flag->preci -= len) > 0)
 		while (1 ? ((data->exe[data->i++] = '0') && --flag->preci) :
 				(flag->preci-- && (data->exe[data->i++] = '0')));
-	stock_exe(data, ft_itoa3(exe), ft_intlen(ft_atoi(ft_itoa3(exe))));
+	stock_exe(data, ft_ulltoa(exe), ft_intlen(ft_atoi(ft_ulltoa(exe))));
 	if (p && (flag->sign -= data->i) > 0)
 		while (flag->sign-- && (data->exe[data->i++] = ' '));
 

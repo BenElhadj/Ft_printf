@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 20:42:15 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/10/16 14:56:27 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/10/17 03:19:34 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	ft_double(t_data *data, t_option *flag)
 	len = 0;
 	exe = va_arg(*flag->argptr, double);
 	len = ft_intlen(exe);
-	filling(ft_itoa3((unsigned long long)exe), data, flag);
+	filling(ft_ulltoa((unsigned long long)exe), data, flag);
 }
 
 /*
@@ -72,7 +72,7 @@ void	ft_pint(t_data *data, t_option *flag)
 	len = 0;
 	exe = va_arg(*flag->argptr, int*);
 	len = ft_intlen((long)exe);
-	filling(ft_itoa1((long)exe), data, flag);
+	filling(ft_lltoa((long)exe), data, flag);
 }
 
 /*

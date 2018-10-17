@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/03 03:51:41 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/10/16 14:16:31 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/10/17 08:55:27 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,19 +114,14 @@ void			ft_pint(t_data *data, t_option *flag);
 void			ft_void(t_data *data, t_option *flag);
 int				ft_intlen(unsigned long long n);
 long			ft_atoi(char *str);
-long			ft_atoi1(t_format *fmtptr);
-char			*ft_itoa1(long long n);
-char			*ft_itoa3(unsigned long long n);
-void			space(char *exe, t_data *data, t_option *flag);
-int				ft_pow(int nb, int pow);
+long			ft_atol_t(t_format *fmtptr);
+char			*ft_lltoa(long long n);
+char			*ft_ulltoa(unsigned long long n);
+//void			space(char *exe, t_data *data, t_option *flag);
 char			*ft_itoa_base(int val, int base, int up);
 char			*ft_lltoa_base(unsigned long long val, long base, int up);
 void			stock_exe(t_data *data, char *txt, int len);
 void			*ft_memset(void *b, long long c, size_t len);
-char			*ft_strjoin(char const *s1, char const *s2);
 size_t			ft_strlen(const char *str);
-void			ft_putchar(char c);
-char			*ft_strcpy(char *dest, const char *src);
-void			ft_putstr(char *str);
 
 #endif

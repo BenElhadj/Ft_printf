@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/04 16:00:38 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/10/16 18:14:03 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/10/17 09:10:36 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,20 +69,27 @@ void	ft_int(t_data *data, t_option *flag)
 		}
 		else if (flag->length == 'H')
 		{
-			data->type.exe_l = (char)va_arg(*flag->argptr, int);
-			data->type.exe_c = ft_atoi(ft_lltoa_base(data->type.exe_l, 8, 0));
+			data->type.exe_ll = (int64_t)va_arg(*flag->argptr, int64_t);
+			data->type.exe_c = ft_atoi(ft_lltoa_base(data->type.exe_ll, 8, 0));
 			flag->sharp && data->type.exe_c ? stock(data, "0", 1): 0;
 			stock(data, filling_ll(data->type.exe_c, data, flag), data->i);
 		}
 	}
 
 	
-	if (!flag->length && find("xX", flag->speci))
+	if (find("xX", flag->speci))
 	{
-		data->type.exe_i = (unsigned int)va_arg(*flag->argptr, unsigned int);
-		flag->speci == 'x' ? (data->type.exe_str = ft_itoa_base(data->type.exe_i
-					, 16, 0)) : (data->type.exe_str = ft_itoa_base(
-						data->type.exe_i, 16, 1));
+		int i;
+
+		i = (flag->speci == 'X' ? 1: 0); 
+
+		if (!flag->length)
+		{
+			data->type.exe_ui =(unsigned int)va_arg(*flag->argptr,unsigned int);
+			data->type.exe_str = ft_itoa_base(data->type.exe_ui, 16, i);
+		}
+
+
 		filling(data->type.exe_str, data, flag);
 	}
 

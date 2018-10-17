@@ -6,13 +6,13 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 06:02:29 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/10/16 14:36:17 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/10/17 03:47:01 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-long	ft_atoi1(t_format *fmtptr)
+long	ft_atol_t(t_format *fmtptr)
 {
 	long	result;
 	long	sign;
@@ -35,7 +35,7 @@ long	ft_atoi1(t_format *fmtptr)
 		return (result);
 }
 
-char	*ft_itoa1(long long n)
+char	*ft_lltoa(long long n)
 {
 	char			*mall;
 	char			*ret;
@@ -62,7 +62,7 @@ char	*ft_itoa1(long long n)
 	return (ret);
 }
 
-char	*ft_itoa3(unsigned long long n)
+char	*ft_ulltoa(unsigned long long n)
 {
 	char					*mall;
 	char					*ret;
@@ -86,11 +86,11 @@ char	*ft_itoa3(unsigned long long n)
 
 char	*ft_lltoa_base(unsigned long long val, long base, int up)
 {
-	int64_t		len;
-	unsigned long long		nbr;
-	char		*ptr;
-	char		*ret;
-	char		*str;
+	int64_t				len;
+	unsigned long long	nbr;
+	char				*ptr;
+	char				*ret;
+	char				*str;
 
 	up == 1 ? (str = "0123456789ABCDEF") : (str = "0123456789abcdef");
 	if (val == 0)
@@ -103,7 +103,7 @@ char	*ft_lltoa_base(unsigned long long val, long base, int up)
 		len++;
 	}
 	nbr = val;
-	if (!(ptr = (char *)malloc(sizeof(char) * len + 1)))
+	if (!(ptr = (char *)malloc(sizeof(char) * len)))
 		return (NULL);
 	ptr[len] = '\0';
 	while (nbr)
@@ -114,4 +114,4 @@ char	*ft_lltoa_base(unsigned long long val, long base, int up)
 	ret = ptr;
 	free (ptr);
 	return (ret);
-}
+} 
