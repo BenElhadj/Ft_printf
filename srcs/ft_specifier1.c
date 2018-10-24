@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/04 16:00:38 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/10/19 21:27:19 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/10/24 21:52:51 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,39 +87,20 @@ void	ft_int(t_data *data, t_option *flag)
 
 	else if (find("oO", flag->speci))
 	{
-/*
-		if (flag->length == 'L')
-			data->type.exe_ull = ft_atoll(ft_lltoa_base((unsigned long long)
-						va_arg(*flag->argptr, unsigned long long), 8, 0));
-		else
-			data->type.exe_ul = ft_atol(ft_lltoa_base((unsigned long)va_arg(
-						*flag->argptr, unsigned long), 8, 0));
-		flag->sharp && data->type.exe_ul ? stock(data, "0", 1): 0;
-		stock(data, (filling_ul(data->type.exe_ul, data, flag)), data->i);
-*/
-
-
-		!flag->length ? filling_x(ft_lltoa_base((unsigned long)va_arg
+		!flag->length ? filling_o(ft_lltoa_base((unsigned long)va_arg
 			(*flag->argptr, unsigned long), 8, 0), data, flag): 0;
-
-		(flag->length == 'h') ? filling_x(ft_lltoa_base((unsigned short)va_arg
+		(flag->length == 'h') ? filling_o(ft_lltoa_base((unsigned short)va_arg
 			(*flag->argptr, unsigned int), 8, 0), data, flag): 0;
-
-		(flag->length == 'H') ? filling_x(ft_lltoa_base((unsigned char)va_arg
+		(flag->length == 'H') ? filling_o(ft_lltoa_base((unsigned char)va_arg
 			(*flag->argptr, unsigned int), 8, 0), data, flag): 0;
-
-		(flag->length == 'l') || (flag->speci == 'D') ? filling_x(ft_lltoa_base
+		(flag->length == 'l') || (flag->speci == 'D') ? filling_o(ft_lltoa_base
 			((long long)va_arg(*flag->argptr, long long), 8, 0), data, flag): 0;
-
-		(flag->length == 'L') ? filling_x(ft_lltoa_base((unsigned long long)
+		(flag->length == 'L') ? filling_o(ft_lltoa_base((unsigned long long)
 			va_arg(*flag->argptr, unsigned long long), 8, 0), data, flag): 0;
-
-		(flag->length == 'j') ? filling_x(ft_lltoa_base((intmax_t)va_arg
+		(flag->length == 'j') ? filling_o(ft_lltoa_base((intmax_t)va_arg
 			(*flag->argptr, intmax_t), 8, 0), data, flag): 0;
-
-		(flag->length == 'z') ? filling_x(ft_lltoa_base((size_t)va_arg
+		(flag->length == 'z') ? filling_o(ft_lltoa_base((size_t)va_arg
 			(*flag->argptr, size_t), 8, 0), data, flag): 0;
-
 	}
 
 

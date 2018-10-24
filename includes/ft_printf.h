@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/03 03:51:41 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/10/19 21:23:56 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/10/24 21:47:03 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ char			*filling_uint(unsigned int exe, t_data *data, t_option *flag);
 char			*filling_ul(unsigned long exe, t_data *data, t_option *flag);
 char			*filling_ull(unsigned long long exe, t_data *data, t_option 
 					*flag);
+void			filling_o(char *exe, t_data *data, t_option *flag);
 void			filling_x(char *exe, t_data *data, t_option *flag);
 void			filling(char *exe, t_data *data, t_option *flag);
 void			ft_percent(t_data *data, t_option *flag);
