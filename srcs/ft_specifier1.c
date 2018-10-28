@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/04 16:00:38 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/10/24 21:52:51 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/10/25 03:29:55 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	ft_int(t_data *data, t_option *flag)
 		flag->length == 'h' ? filling_x(ft_lltoa_base((short)va_arg
 				(*flag->argptr, int), 16, i), data, flag) : 0;
 
-		flag->length == 'H' ? filling_x(ft_lltoa_base((char)va_arg
+		flag->length == 'H' ? filling_x(ft_lltoa_base((int)va_arg
 				(*flag->argptr, int), 16, i), data, flag) : 0;
 
 		flag->length == 'l' ? filling_x(ft_lltoa_base((long)va_arg

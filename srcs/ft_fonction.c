@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 06:02:29 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/10/18 11:05:57 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/10/28 08:54:59 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char	*ft_lltoa(long long n)
 	if (sign < 0)
 		mall[len] = '-';
 	ret = mall;
-	free (mall);
+	free(mall);
 	return (ret);
 }
 
@@ -71,7 +71,8 @@ char	*ft_ulltoa(unsigned long long n)
 
 	len = 2;
 	temp_n = n;
-	while ((n = n / 10) ? len++ : 0);
+	while (n)
+		(n = n / 10) ? len++ : 0;
 	n = temp_n;
 	if ((mall = (char *)malloc(sizeof(char) * len--)) == NULL)
 		return (NULL);
@@ -80,7 +81,7 @@ char	*ft_ulltoa(unsigned long long n)
 	while ((n = n / 10))
 		mall[len--] = n % 10 + '0';
 	ret = mall;
-	free (mall);
+	free(mall);
 	return (ret);
 }
 
@@ -92,7 +93,7 @@ char	*ft_lltoa_base(unsigned long long val, long base, int up)
 	char				*ret;
 	char				*str;
 
-	up == 1 ? (str = "0123456789ABCDEF") : (str = "0123456789abcdef");
+	str = (up == 1 ? "0123456789ABCDEF" : "0123456789abcdef");
 	if (val == 0)
 		return ("0");
 	len = 0;
@@ -107,11 +108,8 @@ char	*ft_lltoa_base(unsigned long long val, long base, int up)
 		return (NULL);
 	ptr[len] = '\0';
 	while (nbr)
-	{
-		ptr[--len] = str[nbr % base];
-		nbr /= base;
-	}
+		nbr ? (ptr[--len] = str[nbr % base]) && (nbr /= base) : 0;
 	ret = ptr;
-	free (ptr);
+	free(ptr);
 	return (ret);
-} 
+}
