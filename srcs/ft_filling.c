@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 14:53:26 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/10/28 09:55:34 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/10/28 09:57:11 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ void	filling_x(char *exe, t_data *data, t_option *flag)
 	(((ft_atoll(exe) > 0) || find("ABCDEFabcdef", *exe)) ? stock(data, exe, len)
 		: (flag->sign > 0 && flag->preci > 0) ? stock(data, " ", len) :
 		(p && flag->preci ? 0 : (stock(data, exe, len))));
-
 	while (sn && flag->sign-- > 0 && (stock(data, " ", 1)));
 }
 
