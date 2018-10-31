@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 18:07:53 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/10/30 13:01:36 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/10/31 17:30:53 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,20 @@ int		main(void)
 	int x1 = 0, x2 = 0;
 	printf("TEST Nº : 1\n\n");
 
-	x1 = 	printf("VR:: [%X] [%#X] [%20x]\n", 0, 0, 0x123456bc);
-	x2 = ft_printf("ME:: [%X] [%#X] [%20x]\n", 0, 0, 0x123456bc);
+x1 = 	printf("VR:: [%0##0.4X]\n",0x037a);
+x2 = ft_printf("ME:: [%0##0.4X]\n",0x037a);
 	printf("[VR][%d] - [ME][%d]\n", x1, x2);
 
 	printf("\nTEST Nº : 2\n\n");
 
-	x1 = 	printf("VR:: [%4X] [%-2x]\n", 0xdd, 0xdd66);
-	x2 = ft_printf("ME:: [%4X] [%-2x]\n", 0xdd, 0xdd66);
+	x1 = 	printf("VR:: [%#.4X]\n", 0xaef);
+	x2 = ft_printf("ME:: [%#.4X]\n", 0xaef);
 	printf("[VR][%d] - [ME][%d]\n", x1, x2);
 
-//	printf("\nTEST Nº : 3\n\n");
+	printf("\nTEST Nº : 3\n\n");
 
-//	x1 = 	printf("VR:: [test[%#.5o] et [%02o] [%0#14.o]!!]\n", 015, 036, 12587499);
-//	x2 = ft_printf("ME:: [test[%#.5o] et [%02o] [%0#14.o]!!]\n", 015, 036, 12587499);
-//	printf("[VR][%d] - [ME][%d]\n", x1, x2);
+	x1 = 	printf("VR:: [%#.22zX]\n",0xff1144ff1144);
+	x2 = ft_printf("ME:: [%#.22zX]\n",0xff1144ff1144);
+	printf("[VR][%d] - [ME][%d]\n", x1, x2);
 	return (0);
 }

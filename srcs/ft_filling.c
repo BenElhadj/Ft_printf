@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 14:53:26 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/10/30 13:24:46 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/10/31 17:45:21 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,45 +72,42 @@ void	filling_x(char *exe, t_data *data, t_option *flag)
 {
 	int len;//len exe
 	int sn;//flag->sign == negative
-	int i;//!!
-	int p;//flag->preci (- 0) ou (+ 1)
-
-	i = 0;
-//printf("\nflag->sign 1 = [%d]", flag->sign);
-	flag->preci == -1 ? (p = 0) : (p = 1);
+	int i;//flag->preci = 0
+	int p;//flag->preci
+	int n;//le nombre == 0 ou plus
+	
+	n = 1;
+	flag->preci == 0 ? (i = 1) : (i = 0);
+	p = flag->preci;
 	flag->sign < 0 ? (sn = 1 && (flag->sign *= -1)) : (sn = 0);
-	len = ((ft_atoll(exe) == 0 && !find("ABCDEFabcdef", *exe)) ? 
-			ft_strlen(exe) : (ft_strlen(exe) + (flag->sharp * 2)));
-	flag->sign > len ? flag->sign -= len : 0;
-
-	if ((flag->preci > len ? (flag->preci -= len) : (flag->preci != -1 ?
-		flag->preci = 0 : 0)) > 0) (flag->sign > flag->preci ? 
-		(flag->sign -= flag->preci) : 0);
-
-//printf("\nflag->sign 2 = [%d]\n", flag->sign);
-	flag->preci == 0 ? flag->zero = 0 : 0;
-	(ft_atoll(exe) == 0 && !find("ABCDEFabcdef", *exe) && flag->preci == 0) &&
-		(!flag->sign ? (len = 0) : (flag->sign += len) && (len -= len));
-
-	if (!sn && !flag->zero)
-		while (flag->sign-- > (len < flag->sign ? 0 : len))
-			stock(data, " ", 1);
+	len = ((ft_atoll(exe) == 0 && !find("ABCDEFabcdef", *exe)) ?
+		ft_strlen(exe) && (n = 0) : (ft_strlen(exe) + (flag->sharp * 2)));
+	flag->sign  > len ? (flag->sign -= len) : (flag->sign = 0);
+	i ? flag->zero = 0 : 0;
+	(!n && (p == 1 || p == -1) && (!flag->sign || (flag->zero &&
+		flag->sign == 1))) ? stock(data, "0", 1) && flag->sign-- : 0;
+	if ((flag->preci > (len - (flag->sharp * 2)) ? (flag->preci -=
+		(len - (flag->sharp * 2))) : (p ? flag->preci = 0 : 0)) > 0)
+		(flag->sign > flag->preci && n ? (flag->sign -= flag->preci) : 0);
+	while (!sn && !flag->zero && i && flag->sign && flag->sign-- > 0)
+		stock(data, " ", 1);
 	flag->speci == 'X' && flag->sharp && (ft_atoll(exe) || find("ABCDEF", *exe))
-		&& !(flag->preci > (int)ft_strlen(exe) && flag->preci == -1) &&
-		(!sn ? stock(data, "0X", 2) : stock(data, "0", 1) && (flag->sign -= 2));
+		&& !(flag->preci > (int)ft_strlen(exe) && p == -1) && (!sn ? stock(data,
+		"0X", 2) : stock(data, "0", 1) && (flag->sign -= 2));
 	flag->speci == 'x' && flag->sharp && (ft_atoll(exe) || find("abcdef", *exe))
-		&& !(flag->preci > (int)ft_strlen(exe) && flag->preci == -1) &&
-		(!sn ? stock(data, "0x", 2) : stock(data, "0", 1) && (flag->sign -= 2));
-	if (!sn && flag->zero)
-		while (flag->sign-- > (len < flag->sign ? len : 0))
-			stock(data, "0", 1);
-//printf("\nflag->preci = [%d]\n", flag->preci);
-	while (!sn && flag->preci-- > 0)
+		&& !(flag->preci > (int)ft_strlen(exe) && p == -1) && (!sn ? stock(data,
+		"0x", 2) : stock(data, "0", 1) && (flag->sign -= 2));
+	while (n && flag->preci > flag->sign && flag->preci && flag->preci-- > 0)
+		stock(data, "0", 1);
+	while (!sn && flag->zero && flag->sign && flag->sign-- > 0)
+		!i && p > 0 ? stock(data, " ", 1) : stock(data, "0", 1);
+	while (!sn && !flag->zero && flag->sign-- > 0)
+		!i && p && !flag->preci ? stock(data, " ", 1) : stock(data, "0", 1);
+	while (p != 1 && !flag->sharp && flag->preci && flag->preci-- > 0)
 		stock(data, "0", 1);
 	stock(data, exe, len);
-	if (sn)
-		while (flag->sign--)
-			stock(data, " ", 1);
+	while (sn && flag->sign-- > 0)
+		stock(data, " ", 1);
 }
 
 char	*filling_i(int exe, t_data *data, t_option *flag)
