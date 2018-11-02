@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 06:02:29 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/10/31 14:01:15 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/11/02 07:56:45 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,14 @@ char	*ft_lltoa(long long n)
 	char			*mall;
 	char			*ret;
 	long long		temp_n;
-	int				len;
+	long			len;
 	char			sign;
 
+//printf("\nexe ft_lltoa  ======> [%lld]\n", n);
+	if (n == INT64_MIN)
+		return ("9223372036854775808");
+	if (n == INT_MIN)
+		return ("2147483648");
 	sign = (n < 0) ? -1 : 1;
 	len = 2 + (n < 0);
 	temp_n = n;
@@ -53,13 +58,14 @@ char	*ft_lltoa(long long n)
 		return (NULL);
 	mall[len--] = '\0';
 	mall[len--] = sign * (n % 10) + '0';
+//printf("\nmall ft_lltoa  ======> [%s]\n", mall);
 	while ((n = n / 10))
 		mall[len--] = sign * (n % 10) + '0';
 	if (sign < 0)
 		mall[len] = '-';
 	ret = mall;
 	free(mall);
-	return (ret);
+	return (mall);
 }
 
 char	*ft_ulltoa(unsigned long long n)

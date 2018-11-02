@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/04 16:00:38 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/10/30 17:30:21 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/11/02 17:02:40 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	ft_int_di(t_data *data, t_option *flag)
 		data->type.exe_im = va_arg(*flag->argptr, intmax_t)), data,
 		flag), data->i) : 0;
 	(flag->length == 'z' && !(flag->speci == 'D')) ? stock(data,
-		filling_uint((data->type.exe_si = va_arg(*flag->argptr, size_t)),
+		filling_l((data->type.exe_ssi = va_arg(*flag->argptr, ssize_t)),
 		data, flag), data->i) : 0;
 }
 
@@ -99,8 +99,8 @@ void	ft_int_x(t_data *data, t_option *flag)
 
 	init_type(&data->type);
 	i = (flag->speci == 'X' ? 1 : 0);
-	!flag->length ? filling_x(ft_lltoa_base((unsigned long)va_arg(
-			*flag->argptr, unsigned long), 16, i), data, flag) : 0;
+	!flag->length ? filling_x(ft_lltoa_base((unsigned int)va_arg(
+			*flag->argptr, unsigned int), 16, i), data, flag) : 0;
 	flag->length == 'h' ? filling_x(ft_lltoa_base((short)va_arg(
 			*flag->argptr, int), 16, i), data, flag) : 0;
 	flag->length == 'H' ? filling_x(ft_lltoa_base((int)va_arg(

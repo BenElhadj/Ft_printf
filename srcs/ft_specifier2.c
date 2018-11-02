@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 20:42:15 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/10/28 07:28:59 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/11/01 15:57:13 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_uint(t_data *data, t_option *flag)
 		exe = (unsigned long long)va_arg(*flag->argptr, unsigned long long);
 		stock(data, filling_ull(exe, data, flag), data->i);
 	}
-	else if (flag->speci == 'u' && flag->length == 'z')
+	else if (flag->speci == 'u' && find("jz", flag->length))
 	{
 		exe = (size_t)va_arg(*flag->argptr, size_t);
 		stock(data, filling_ul(exe, data, flag), data->i);

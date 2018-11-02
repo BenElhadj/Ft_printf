@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/03 03:51:41 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/10/30 17:30:56 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/11/02 23:11:40 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct	s_format
 	int			j;
 }				t_format;
 
-typedef struct	s_type
+typedef union	u_type
 {
 	int					exe_i;
 	short				exe_sh;
@@ -43,8 +43,9 @@ typedef struct	s_type
 	char				*exe_str;
 	long				exe_l;
 	long long			exe_ll;
-	intmax_t			exe_im;
+	uintmax_t			exe_im;
 	size_t				exe_si;
+	ssize_t				exe_ssi;
 	unsigned int		exe_ui;
 	unsigned short		exe_ush;
 	unsigned char		exe_uc;
@@ -73,6 +74,7 @@ typedef struct	s_option
 	char		zero;
 	char		space;
 	char		plus;
+	char		neg;
 	int			sign;
 
 	int			width;
@@ -125,5 +127,17 @@ char			*ft_lltoa_base(unsigned long long val, long base, int up);
 void			stock_exe(t_data *data, char *txt, int len);
 void			*ft_memset(void *b, long long c, size_t len);
 size_t			ft_strlen(const char *str);
+void			printf_wcharc(t_data *data, t_option *flag);
+void			char_data_process(t_data *data, t_option *flag, wchar_t str);
+int				wcharc_len(wchar_t str);
+void			w_to_charc(wchar_t c, t_data *data);
+void			w_to_char(wchar_t c, unsigned char *s, int *i);
+void			printf_wchars(t_data *data, t_option *flag);
+void			str_data_process(t_data *data, t_option *flag, wchar_t *str);
+int				get_precis(wchar_t *str, int p);
+void			wchar_write(t_data *data, wchar_t *str, int len);
+int				wchars_len(wchar_t *str);
+int				stock_c(t_data *data, char fmt, int len);
+
 
 #endif
