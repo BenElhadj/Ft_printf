@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 21:47:52 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/11/01 20:29:24 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/11/04 01:13:52 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,31 @@ void	flush_data(t_data *data)
 {
 	write(1, data->data, data->index);
 	data->index = 0;
+}
+
+int		dataset(t_data *data, char fmt, int len)
+{
+	int	i;
+
+	i = 0;
+	while (i < len)
+	{
+		data->index == SIZEBUF ? flush_data(data) : 0;
+		data->data[data->index] = fmt;
+		i++;
+		data->index++;
+		data->len++;
+	}
+	if (len == -2)
+	{
+		data->index == SIZEBUF ? flush_data(data) : 0;
+		data->data[data->index] = fmt;
+		i++;
+		data->index++;
+		data->len++;
+	}
+	flush_data(data);
+	return (i);
 }
 
 int		stock(t_data *data, char *fmt, int len)

@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/03 02:20:55 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/11/01 14:44:04 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/11/04 00:43:59 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int		processing(t_format *fmtptr, t_data *data)
 void	apply_speci(t_data *data, t_option *flag)
 {
 	find("cs%", flag->speci) ? ft_str(data, flag) : 0;
+	find("CS", flag->speci) ? ft_str(data, flag) : 0;
 	find("dDi", flag->speci) ? ft_int_di(data, flag) : 0;
 	find("oO", flag->speci) ? ft_int_o(data, flag) : 0;
 	find("xX", flag->speci) ? ft_int_x(data, flag) : 0;

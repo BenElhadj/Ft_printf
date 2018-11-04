@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/04 16:00:38 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/11/02 17:02:40 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/11/04 07:56:54 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,27 @@
 
 void	ft_str(t_data *data, t_option *flag)
 {
-	char	*exe;
 	char	exe_c[2];
+	int     ascii;
 
 	if (flag->speci == '%')
 		filling("%\0", data, flag);
 	else if (flag->speci == 'c')
 	{
-		exe_c[0] = (char)va_arg(*flag->argptr, int);
+		ascii = va_arg(*flag->argptr, int);
+		exe_c[0] = (char)ascii;
 		exe_c[1] = '\0';
-		filling(exe_c, data, flag);
+//		if (flag->length == 'l'&& (ascii < 0 || ascii > 255))
+//			flush_data(data, 2);
+//		else
+			filling(exe_c, data, flag);
 	}
 	else if (flag->speci == 's')
-	{
-		exe = (char*)va_arg(*flag->argptr, char*);
-		filling(exe, data, flag);
-	}
+		filling(va_arg(*flag->argptr, char*), data, flag);
+	else if (flag->speci == 'C')
+		filling_utf8_c(va_arg(*flag->argptr, wchar_t), data, flag);
+	else if (flag->speci == 'S')
+		filling_utf8_s(*va_arg(*flag->argptr, wchar_t*), data, flag);
 }
 
 /*

@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/03 03:51:41 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/11/02 23:11:40 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/11/04 08:16:32 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,17 +127,33 @@ char			*ft_lltoa_base(unsigned long long val, long base, int up);
 void			stock_exe(t_data *data, char *txt, int len);
 void			*ft_memset(void *b, long long c, size_t len);
 size_t			ft_strlen(const char *str);
+
+void			filling_utf8_s(wchar_t *str, t_data *data, t_option *flag);
+int				wchars_len(wchar_t *str);
+void			wchar_write(t_data *data, wchar_t *str, int len);
+int				get_precis(wchar_t *str, int p);
+void			str_data_process(t_data *data, t_option *flag, wchar_t *str);
+void			printf_wchars(t_data *data, t_option *flag);
+//void			printf_wchars(t_data *data, t_option *flag, va_list args);
+void			filling_utf8_c(wchar_t str, t_data *data, t_option *flag);
+wchar_t			*arg_wcharc(int *read, int arg_num, t_data *data,
+				t_option *flag);
+void			w_to_charc(wchar_t c, t_data *data);
+int				wcharc_len(wchar_t str);
+void			char_data_process(t_data *data, t_option *flag, wchar_t str);
+int				dataset(t_data *data, char fmt, int len);
+
+
+/*
 void			printf_wcharc(t_data *data, t_option *flag);
 void			char_data_process(t_data *data, t_option *flag, wchar_t str);
 int				wcharc_len(wchar_t str);
-void			w_to_charc(wchar_t c, t_data *data);
-void			w_to_char(wchar_t c, unsigned char *s, int *i);
-void			printf_wchars(t_data *data, t_option *flag);
-void			str_data_process(t_data *data, t_option *flag, wchar_t *str);
-int				get_precis(wchar_t *str, int p);
-void			wchar_write(t_data *data, wchar_t *str, int len);
-int				wchars_len(wchar_t *str);
+//void			w_to_char(wchar_t c, unsigned char *s, int *i);
+wchar_t *arg_wchars(int *read, int arg_num, t_data *data, t_option *flag)
 int				stock_c(t_data *data, char fmt, int len);
-
+int				wcharc_len(wchar_t str);
+void			filling_utf8_c(wchar_t str, t_data *data, t_option *flag);
+void			filling_utf8_s(wchar_t str, t_data *data, t_option *flag);
+*/
 
 #endif

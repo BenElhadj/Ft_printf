@@ -6,7 +6,7 @@
 #    By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/27 01:54:04 by bhamdi            #+#    #+#              #
-#    Updated: 2018/11/02 23:08:58 by bhamdi           ###   ########.fr        #
+#    Updated: 2018/11/04 07:50:09 by bhamdi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ OBJ_DIR = obj/
 
 SRC = ft_flag.c ft_option.c ft_printf.c ft_specifier1.c ft_specifier2.c \
 	  ft_fonction.c ft_fonction1.c ft_fonction2.c ft_filling.c ft_w_to_char.c\
-	  ft_wchar_c.c ft_wchar_s.c
+	  ft_wchar_c.c ft_filling.c 
 
 OBJ = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 

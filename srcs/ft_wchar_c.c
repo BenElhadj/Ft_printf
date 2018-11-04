@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/31 23:57:32 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/11/03 00:02:20 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/11/04 02:39:15 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,24 +42,24 @@ wchar_t	*arg_wcharc(int *read, int arg_num, t_data *data, t_option *flag)
 void	w_to_charc(wchar_t c, t_data *data)
 {
 	if (c < (1 << 7))
-		stock_c(data, (unsigned char)(c), 1);
+		dataset(data, (unsigned char)(c), 1);
 	else if (c < (1 << 11))
 	{
-		stock_c(data, (unsigned char)((c >> 6) | 0xC0), 1);
-		stock_c(data, (unsigned char)((c & 0x3F) | 0x80), 1);
+		dataset(data, (unsigned char)((c >> 6) | 0xC0), 1);
+		dataset(data, (unsigned char)((c & 0x3F) | 0x80), 1);
 	}
 	else if (c < (1 << 16))
 	{
-		stock_c(data, (unsigned char)(((c >> 12)) | 0xE0), 1);
-		stock_c(data, (unsigned char)(((c >> 6) & 0x3F) | 0x80), 1);
-		stock_c(data, (unsigned char)((c & 0x3F) | 0x80), 1);
+		dataset(data, (unsigned char)(((c >> 12)) | 0xE0), 1);
+		dataset(data, (unsigned char)(((c >> 6) & 0x3F) | 0x80), 1);
+		dataset(data, (unsigned char)((c & 0x3F) | 0x80), 1);
 	}
 	else if (c < (1 << 21))
 	{
-		stock_c(data, (unsigned char)(((c >> 18)) | 0xF0), 1);
-		stock_c(data, (unsigned char)(((c >> 12) & 0x3F) | 0x80), 1);
-		stock_c(data, (unsigned char)(((c >> 6) & 0x3F) | 0x80), 1);
-		stock_c(data, (unsigned char)((c & 0x3F) | 0x80), 1);
+		dataset(data, (unsigned char)(((c >> 18)) | 0xF0), 1);
+		dataset(data, (unsigned char)(((c >> 12) & 0x3F) | 0x80), 1);
+		dataset(data, (unsigned char)(((c >> 6) & 0x3F) | 0x80), 1);
+		dataset(data, (unsigned char)((c & 0x3F) | 0x80), 1);
 	}
 }
 
@@ -86,16 +86,7 @@ void	char_data_process(t_data *data, t_option *flag, wchar_t str)
 	a = flag->sign;
 	if (a > 0)
 		w_to_charc(str, data);
-	stock_c(data, (flag->zero > 0 && a == 0) ? '0' : ' ', total - to_copy);
+	dataset(data, (flag->zero > 0 && a == 0) ? '0' : ' ', total - to_copy);
 	if (flag->sign <= 0)
 		w_to_charc(str, data);
-}
-
-void		printf_wcharc(t_data *data, t_option *flag)
-{
-	wchar_t c;
-
-	c = 0;
-	c = *((wchar_t *)field_proc(data, flag, flag->argptr, (void *)arg_wcharc));
-	char_data_process(data, flag, (c == 0) ? 0 : c);
 }
