@@ -6,7 +6,7 @@
 /*   By: suddin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 07:36:15 by suddin            #+#    #+#             */
-/*   Updated: 2018/11/04 08:13:44 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/11/04 17:45:34 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	str_data_process(t_data *data, t_option *flag, wchar_t *str)
 	if (flag->sign <= 0)
 		wchar_write(data, str, to_copy);
 }
-
+/*
 void	printf_wchars(t_data *data, t_option *flag, va_list args)
 {
 	wchar_t	*str;
@@ -112,4 +112,4 @@ void	printf_wchars(t_data *data, t_option *flag, va_list args)
 		str_data_process(data, flag, L"");
 	else
 		str_data_process(data, flag, (str == NULL) ? L"(null)" : str);
-}
+}*/

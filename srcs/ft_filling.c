@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 14:53:26 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/11/04 08:02:30 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/11/04 17:15:05 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,24 +28,26 @@ void    filling_utf8_c(wchar_t str, t_data *data, t_option *flag)
 		if (flag->sign <= 0)
 			w_to_charc(str, data);
 	}
-
 }
 
 void    filling_utf8_s(wchar_t *str, t_data *data, t_option *flag)
 {
 	int total;
 	int to_copy;
+	int str_len;
 
 	if (flag->speci == 'S')
 	{
-		to_copy = wcharc_len(str);
+		str_len = wchars_len(str);
+		to_copy = (flag->preci < str_len && flag->preci != -1) ? get_precis
+			(str, flag->preci) : str_len;
 		total = (flag->width > to_copy) ? flag->width : to_copy;
 		if (flag->sign > 0)
-			w_to_charc(str, data);
+			wchar_write(data, str, to_copy);
 		dataset(data, (flag->zero > 0 && flag->sign == 0) ? '0' :
 				' ', total - to_copy);
 		if (flag->sign <= 0)
-			w_to_chars(str, data);
+			wchar_write(data, str, to_copy);
 	}
 
 }

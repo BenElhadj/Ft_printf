@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/04 16:00:38 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/11/04 07:56:54 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/11/04 17:14:04 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_str(t_data *data, t_option *flag)
 	else if (flag->speci == 'C')
 		filling_utf8_c(va_arg(*flag->argptr, wchar_t), data, flag);
 	else if (flag->speci == 'S')
-		filling_utf8_s(*va_arg(*flag->argptr, wchar_t*), data, flag);
+		filling_utf8_s(va_arg(*flag->argptr, wchar_t*), data, flag);
 }
 
 /*
