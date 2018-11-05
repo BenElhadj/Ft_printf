@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/04 16:00:38 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/11/04 17:14:04 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/11/05 10:55:49 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 void	ft_str(t_data *data, t_option *flag)
 {
 	char	exe_c[2];
-	int     ascii;
+	int		ascii;
 
 	if (flag->speci == '%')
 		filling("%\0", data, flag);

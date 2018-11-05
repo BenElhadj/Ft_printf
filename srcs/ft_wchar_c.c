@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/31 23:57:32 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/11/04 02:39:15 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/11/05 10:41:45 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	w_to_charc(wchar_t c, t_data *data)
 	}
 }
 
-int	wcharc_len(wchar_t str)
+int		wcharc_len(wchar_t str)
 {
 	if (str < (1 << 7))
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/03 03:51:41 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/11/04 17:32:30 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/11/05 10:38:05 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct	s_data
 {
 	char		exe[SIZEBUF + 1];
 	int			i;
+	int			ok;
 
 	char		data[SIZEBUF + 1];
 	size_t		index;
@@ -90,7 +91,7 @@ typedef struct	s_option
 
 char			find(const char *s, char c);
 int				ft_printf(const char *restrict format, ...);
-int				find_define(t_option *flag, t_format *fmtptr);
+int				find_define(t_data *data, t_option *flag, t_format *fmtptr);
 void			find_preci(t_option *flag, t_format *fmtptr);
 int				processing(t_format *fmtptr, t_data *data);
 void			init_type(t_type *type);
@@ -134,7 +135,6 @@ void			wchar_write(t_data *data, wchar_t *str, int len);
 void			w_to_char(wchar_t c, unsigned char *s, int *i);
 int				get_precis(wchar_t *str, int p);
 void			str_data_process(t_data *data, t_option *flag, wchar_t *str);
-//void			printf_wchars(t_data *data, t_option *flag);
 void			filling_utf8_c(wchar_t str, t_data *data, t_option *flag);
 wchar_t			*arg_wcharc(int *read, int arg_num, t_data *data,
 				t_option *flag);
@@ -142,17 +142,6 @@ void			w_to_charc(wchar_t c, t_data *data);
 int				wcharc_len(wchar_t str);
 void			char_data_process(t_data *data, t_option *flag, wchar_t str);
 int				dataset(t_data *data, char fmt, int len);
-
-
-/*
-void			printf_wcharc(t_data *data, t_option *flag);
-void			char_data_process(t_data *data, t_option *flag, wchar_t str);
-int				wcharc_len(wchar_t str);
-wchar_t *arg_wchars(int *read, int arg_num, t_data *data, t_option *flag)
-int				stock_c(t_data *data, char fmt, int len);
-int				wcharc_len(wchar_t str);
-void			filling_utf8_c(wchar_t str, t_data *data, t_option *flag);
-void			filling_utf8_s(wchar_t str, t_data *data, t_option *flag);
-*/
+char			*filling_uint(unsigned int exe, t_data *data, t_option *flag);
 
 #endif

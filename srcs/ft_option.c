@@ -6,25 +6,11 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 21:47:52 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/11/04 01:13:52 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/11/05 11:20:49 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-
-int		ft_intlen(unsigned long long n)
-{
-	int		i;
-
-	i = 0;
-	n <= 0 ? i++ : 0;
-	while (n > 0)
-	{
-		n /= 10;
-		i++;
-	}
-	return (i);
-}
 
 void	flush_data(t_data *data)
 {

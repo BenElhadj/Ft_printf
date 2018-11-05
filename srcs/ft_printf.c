@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/03 02:20:55 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/11/04 00:43:59 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/11/05 10:57:52 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		processing(t_format *fmtptr, t_data *data)
 	t_option	flag;
 
 	init_option(&flag, &fmtptr->args, 1);
-	fmtptr->i = find_define(&flag, fmtptr);
+	fmtptr->i = find_define(data, &flag, fmtptr);
 	apply_speci(data, &flag);
 	return (fmtptr->i);
 }

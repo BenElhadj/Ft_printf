@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 06:02:29 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/11/04 03:45:55 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/11/05 11:18:38 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,8 @@ char	*ft_lltoa(long long n)
 	mall[len--] = sign * (n % 10) + '0';
 	while ((n = n / 10))
 		mall[len--] = sign * (n % 10) + '0';
-	if (sign < 0)
-		mall[len] = '-';
-	ret = mall;
-	free(mall);
+	sign < 0 ? (mall[len] = '-') : 0;
+	(ret = mall) ? free(mall) : 0;
 	return (mall);
 }
 

@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 14:53:26 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/11/02 09:30:00 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/11/05 10:52:17 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,12 @@ void	find_length(t_option *flag, t_format *fmtptr)
 	((flag->length == 'l' && fmtptr->fmt[fmtptr->i] == 'l') &&
 	fmtptr->i++) ? flag->length = 'L' : 0;
 }
-int		find_define(t_option *flag, t_format *fmtptr)
+int		find_define(t_data *data, t_option *flag, t_format *fmtptr)
 {
-	while (!flag->speci)
+	int i;
+
+	i = 0;
+	while (!flag->speci && i != 5)
 	{
 		fmtptr->i++;
 
@@ -76,7 +79,9 @@ int		find_define(t_option *flag, t_format *fmtptr)
 		if (fmtptr->i <= fmtptr->j && find(LENGTH, fmtptr->fmt[fmtptr->i]))
 			find_length(flag, fmtptr);
 		find(SPECIFIER, fmtptr->fmt[fmtptr->i]) ? flag->speci =
-		find(SPECIFIER, fmtptr->fmt[fmtptr->i]) : fmtptr->i--;
+		find(SPECIFIER, fmtptr->fmt[fmtptr->i]) : (fmtptr->i -= 1) && (i += 1);
 	}
+	!flag->speci ? (data->ok = -1) : 0;
+
 	return (fmtptr->i);
 }

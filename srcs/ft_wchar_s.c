@@ -6,7 +6,7 @@
 /*   By: suddin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 07:36:15 by suddin            #+#    #+#             */
-/*   Updated: 2018/11/04 17:45:34 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/11/05 10:19:57 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	wchar_write(t_data *data, wchar_t *str, int len)
 		w_to_char(str[i], s, &s_len);
 		t += s_len;
 		if (t <= len)
-			data_man(data, s, 0, s_len);
+			stock(data, (char*)s, s_len);
 		else if (t > len)
 			return ;
 		i++;
@@ -101,15 +101,3 @@ void	str_data_process(t_data *data, t_option *flag, wchar_t *str)
 	if (flag->sign <= 0)
 		wchar_write(data, str, to_copy);
 }
-/*
-void	printf_wchars(t_data *data, t_option *flag, va_list args)
-{
-	wchar_t	*str;
-
-	str = NULL;
-	str = (wchar_t *)field_proc(data, flag, args, (void *)arg_wchars);
-	if (str == NULL && flag->preci > 0 && flag->preci < 6)
-		str_data_process(data, flag, L"");
-	else
-		str_data_process(data, flag, (str == NULL) ? L"(null)" : str);
-}*/

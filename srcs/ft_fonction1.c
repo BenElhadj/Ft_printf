@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/19 01:32:25 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/10/28 08:34:53 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/11/05 11:16:07 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,19 @@ size_t	ft_strlen(const char *str)
 		return (0);
 	while (str[i])
 		i++;
+	return (i);
+}
+
+int		ft_intlen(unsigned long long n)
+{
+	int		i;
+
+	i = 0;
+	n <= 0 ? i++ : 0;
+	while (n > 0)
+	{
+		n /= 10;
+		i++;
+	}
 	return (i);
 }
