@@ -6,7 +6,7 @@
 #    By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/27 01:54:04 by bhamdi            #+#    #+#              #
-#    Updated: 2018/11/04 17:24:03 by bhamdi           ###   ########.fr        #
+#    Updated: 2018/11/09 19:56:47 by bhamdi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,9 +20,10 @@ CFLAGS = -g3 -Werror -Wall -Wextra -flto -O3 #-fsanitize=address	\
 SRCS_DIR = srcs/
 OBJ_DIR = obj/
 
-SRC = ft_flag.c ft_option.c ft_printf.c ft_specifier1.c ft_specifier2.c \
-	  ft_fonction.c ft_fonction1.c ft_fonction2.c ft_filling.c ft_w_to_char.c\
-	  ft_wchar_c.c ft_wchar_s.c 
+SRC = ft_filling_ox.c ft_filling_s.c ft_filling_u.c ft_filling_utcs.c\
+	  ft_flag.c ft_fonction.c ft_fonction1.c ft_fonction2.c ft_option.c\
+	  ft_printf.c ft_specifier1.c ft_specifier2.c ft_w_to_char.c ft_wchar_c.c\
+	  ft_wchar_s.c
 
 OBJ = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 

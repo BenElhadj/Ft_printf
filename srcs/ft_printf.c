@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/03 02:20:55 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/11/05 10:57:52 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/11/10 09:09:16 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	apply_speci(t_data *data, t_option *flag)
 	find("fFeEaAgG", flag->speci) ? ft_double(data, flag) : 0;
 	flag->speci == 'n' ? ft_pint(data, flag) : 0;
 	flag->speci == 'p' ? ft_void(data, flag) : 0;
+	!find(SPECIFIER, flag->speci) ? ft_str(data, flag) : 0;
 	init_option(flag, 0, 0);
 }
 
@@ -50,8 +51,15 @@ int		ft_printf(const char *restrict format, ...)
 	while (fmtptr.fmt[fmtptr.j])
 		fmtptr.j++;
 	while (fmtptr.i <= fmtptr.j)
-		fmtptr.fmt[fmtptr.i] != '%' ? stock(&data, &(fmtptr.fmt[fmtptr.i++]),
-				1) : (fmtptr.i = processing(&fmtptr, &data)) && (fmtptr.i++);
+	{
+		if (fmtptr.fmt[fmtptr.i] != '%')
+			stock(&data, &(fmtptr.fmt[fmtptr.i++]), 1);
+		else
+			(fmtptr.i = processing(&fmtptr, &data)) ? fmtptr.i++ : 0;
+		if (fmtptr.i == -1)
+			return (-1);
+	}
 	va_end(fmtptr.args);
+	fmtptr.i > -1 && data.index > 0 ? flush_data(&data) : 0;
 	return (data.len);
 }

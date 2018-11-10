@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/04 16:00:38 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/11/05 10:55:49 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/11/06 12:57:15 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,21 @@ void	ft_str(t_data *data, t_option *flag)
 
 	if (flag->speci == '%')
 		filling("%\0", data, flag);
-	else if (flag->speci == 'c')
+	else if (flag->speci == 'c' || find(SPECIFIER, flag->preci))
 	{
-		ascii = va_arg(*flag->argptr, int);
-		exe_c[0] = (char)ascii;
-		exe_c[1] = '\0';
-//		if (flag->length == 'l'&& (ascii < 0 || ascii > 255))
-//			flush_data(data, 2);
-//		else
+		flag->length == 'l' ? flag->speci = 'C' : 0;
+		if (flag->length != 'l')
+		{
+			ascii = (flag->speci == 'c' ? va_arg(*flag->argptr, int) :
+				flag->speci);
+			exe_c[0] = (char)ascii;
+			exe_c[1] = '\0';
 			filling(exe_c, data, flag);
+		}
 	}
 	else if (flag->speci == 's')
-		filling(va_arg(*flag->argptr, char*), data, flag);
+		flag->length == 'l' ? flag->speci = 'S' :
+			filling(va_arg(*flag->argptr, char*), data, flag);
 	else if (flag->speci == 'C')
 		filling_utf8_c(va_arg(*flag->argptr, wchar_t), data, flag);
 	else if (flag->speci == 'S')
@@ -50,25 +53,25 @@ void	ft_int_di(t_data *data, t_option *flag)
 	init_type(&data->type);
 	(!flag->length && !(flag->speci == 'D')) ? stock(data, filling_i((
 		data->type.exe_i = va_arg(*flag->argptr, int)), data, flag),
-		data->i) : 0;
+			data->i) : 0;
 	(flag->length == 'h' && !(flag->speci == 'D')) ? stock(data,
 		filling_i((data->type.exe_sh = (short)va_arg(*flag->argptr, int)),
-		data, flag), data->i) : 0;
+			data, flag), data->i) : 0;
 	(flag->length == 'H' && !(flag->speci == 'D')) ? stock(data, filling_i((
 		data->type.exe_c = (char)va_arg(*flag->argptr, int)), data,
-		flag), data->i) : 0;
+			flag), data->i) : 0;
 	(flag->length == 'l' || flag->speci == 'D') ? stock(data, filling_l((
 		data->type.exe_l = va_arg(*flag->argptr, long)), data, flag),
-		data->i) : 0;
+			data->i) : 0;
 	(flag->length == 'L' && !(flag->speci == 'D')) ? stock(data, filling_ll((
 		data->type.exe_ll = va_arg(*flag->argptr, long long)),
-		data, flag), data->i) : 0;
+			data, flag), data->i) : 0;
 	(flag->length == 'j' && !(flag->speci == 'D')) ? stock(data, filling_im((
 		data->type.exe_im = va_arg(*flag->argptr, intmax_t)), data,
-		flag), data->i) : 0;
+			flag), data->i) : 0;
 	(flag->length == 'z' && !(flag->speci == 'D')) ? stock(data,
 		filling_l((data->type.exe_ssi = va_arg(*flag->argptr, ssize_t)),
-		data, flag), data->i) : 0;
+			data, flag), data->i) : 0;
 }
 
 /*
@@ -105,17 +108,17 @@ void	ft_int_x(t_data *data, t_option *flag)
 	init_type(&data->type);
 	i = (flag->speci == 'X' ? 1 : 0);
 	!flag->length ? filling_x(ft_lltoa_base((unsigned int)va_arg(
-			*flag->argptr, unsigned int), 16, i), data, flag) : 0;
+					*flag->argptr, unsigned int), 16, i), data, flag) : 0;
 	flag->length == 'h' ? filling_x(ft_lltoa_base((short)va_arg(
-			*flag->argptr, int), 16, i), data, flag) : 0;
+					*flag->argptr, int), 16, i), data, flag) : 0;
 	flag->length == 'H' ? filling_x(ft_lltoa_base((int)va_arg(
-			*flag->argptr, int), 16, i), data, flag) : 0;
+					*flag->argptr, int), 16, i), data, flag) : 0;
 	flag->length == 'l' ? filling_x(ft_lltoa_base((long)va_arg(
-			*flag->argptr, long), 16, i), data, flag) : 0;
+					*flag->argptr, long), 16, i), data, flag) : 0;
 	flag->length == 'L' ? filling_x(ft_lltoa_base((long long)va_arg(
-			*flag->argptr, long long), 16, i), data, flag) : 0;
+					*flag->argptr, long long), 16, i), data, flag) : 0;
 	flag->length == 'j' ? filling_x(ft_lltoa_base((intmax_t)va_arg(
-			*flag->argptr, intmax_t), 16, i), data, flag) : 0;
+					*flag->argptr, intmax_t), 16, i), data, flag) : 0;
 	flag->length == 'z' ? filling_x(ft_lltoa_base((size_t)va_arg(
-			*flag->argptr, size_t), 16, i), data, flag) : 0;
+					*flag->argptr, size_t), 16, i), data, flag) : 0;
 }

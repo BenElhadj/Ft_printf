@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/03 03:51:41 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/11/05 10:38:05 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/11/10 19:15:41 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <stdarg.h>
-# define SIZEBUF 1985
+# define SIZEBUF 4096
 # define SPECIFIER "aAcCdDeEfFgGinoOpsSuUxX%"
 # define FLAGS "-0123456789"
 # define WIDTH "0123456789*"
@@ -54,6 +54,7 @@ typedef union	u_type
 	double				exe_d;
 	long double			exe_ld;
 	int					*exe_int;
+	wchar_t				*exe_wc;
 	void				*exe_void;
 }				t_type;
 
@@ -110,6 +111,7 @@ char			*filling_ull(unsigned long long exe, t_data *data,
 void			filling_o(char *exe, t_data *data, t_option *flag);
 void			filling_x(char *exe, t_data *data, t_option *flag);
 void			filling(char *exe, t_data *data, t_option *flag);
+void			filling_u(t_data *data, t_option *flag);
 void			ft_str(t_data *data, t_option *flag);
 void			ft_int_di(t_data *data, t_option *flag);
 void			ft_int_o(t_data *data, t_option *flag);
@@ -128,7 +130,6 @@ char			*ft_lltoa_base(unsigned long long val, long base, int up);
 void			stock_exe(t_data *data, char *txt, int len);
 void			*ft_memset(void *b, long long c, size_t len);
 size_t			ft_strlen(const char *str);
-
 void			filling_utf8_s(wchar_t *str, t_data *data, t_option *flag);
 int				wchars_len(wchar_t *str);
 void			wchar_write(t_data *data, wchar_t *str, int len);

@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 14:53:26 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/11/05 10:52:17 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/11/09 22:13:48 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,19 @@ char	find(const char *s, char c)
 
 void	find_preci(t_option *flag, t_format *fmtptr)
 {
-	while (fmtptr->i <= fmtptr->j && find(FLAGS, fmtptr->fmt[fmtptr->i]))
-		flag->sign = (ft_atol_t(fmtptr) * flag->neg);
-	if (fmtptr->i <= fmtptr->j && find(WIDTH, fmtptr->fmt[fmtptr->i]))
-		(fmtptr->fmt[fmtptr->i] != '*' ? (flag->width = ft_atol_t(fmtptr)) :
-		(flag->sign = (va_arg(*flag->argptr, int) * flag->neg))
-		&& (fmtptr->i)++);
-	if (fmtptr->fmt[fmtptr->i] == '.' && fmtptr->i++)
-		(fmtptr->fmt[fmtptr->i] == '*' ? (flag->preci = va_arg(*flag->argptr,
-			int)) : ((flag->preci = ft_atol_t(fmtptr))));
+	if (fmtptr->fmt[fmtptr->i] != '.' && fmtptr->fmt[fmtptr->i - 1] != '.')
+	{
+		while (fmtptr->i <= fmtptr->j && find(FLAGS, fmtptr->fmt[fmtptr->i]))
+			flag->sign = (ft_atol_t(fmtptr) * flag->neg);
+		if (fmtptr->i <= fmtptr->j && find(WIDTH, fmtptr->fmt[fmtptr->i]))
+			(fmtptr->fmt[fmtptr->i] != '*' ? (flag->width =
+			ft_atol_t(fmtptr)) : (flag->sign = (va_arg(*flag->argptr, int)
+			* flag->neg)) && (fmtptr->i++));
+	}
+	if (fmtptr->fmt[fmtptr->i] == '.' && flag->preci == -1 && fmtptr->i++)
+		(fmtptr->fmt[fmtptr->i] == '*' ? (flag->preci =
+		va_arg(*flag->argptr, int)) && (fmtptr->i++) :
+		((flag->preci = ft_atol_t(fmtptr))));
 }
 
 void	find_length(t_option *flag, t_format *fmtptr)
@@ -56,15 +60,15 @@ void	find_length(t_option *flag, t_format *fmtptr)
 	((flag->length == 'l' && fmtptr->fmt[fmtptr->i] == 'l') &&
 	fmtptr->i++) ? flag->length = 'L' : 0;
 }
+
 int		find_define(t_data *data, t_option *flag, t_format *fmtptr)
 {
 	int i;
 
 	i = 0;
-	while (!flag->speci && i != 5)
+	while (!flag->speci && i++ != 5)
 	{
 		fmtptr->i++;
-
 		while (fmtptr->i <= fmtptr->j && fmtptr->fmt[fmtptr->i] == '#')
 			fmtptr->i++ ? (flag->sharp = 1) : 0;
 		while (fmtptr->i <= fmtptr->j && fmtptr->fmt[fmtptr->i] == ' ')
@@ -75,13 +79,13 @@ int		find_define(t_data *data, t_option *flag, t_format *fmtptr)
 			fmtptr->i++ ? (flag->plus = 1) : 0;
 		while (fmtptr->i <= fmtptr->j && fmtptr->fmt[fmtptr->i] == '0')
 			fmtptr->i++ ? (flag->zero = 1) : 0;
-		find_preci(flag, fmtptr);
+		find("-.*0123456789", fmtptr->fmt[fmtptr->i]) ?
+			find_preci(flag, fmtptr) : 0;
 		if (fmtptr->i <= fmtptr->j && find(LENGTH, fmtptr->fmt[fmtptr->i]))
 			find_length(flag, fmtptr);
 		find(SPECIFIER, fmtptr->fmt[fmtptr->i]) ? flag->speci =
-		find(SPECIFIER, fmtptr->fmt[fmtptr->i]) : (fmtptr->i -= 1) && (i += 1);
+		find(SPECIFIER, fmtptr->fmt[fmtptr->i]) : (fmtptr->i -= 1);
 	}
 	!flag->speci ? (data->ok = -1) : 0;
-
 	return (fmtptr->i);
 }

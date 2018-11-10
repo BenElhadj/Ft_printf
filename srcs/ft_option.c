@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 21:47:52 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/11/05 11:20:49 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/11/06 11:16:29 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int		dataset(t_data *data, char fmt, int len)
 		data->index++;
 		data->len++;
 	}
-	flush_data(data);
 	return (i);
 }
 
@@ -64,7 +63,6 @@ int		stock(t_data *data, char *fmt, int len)
 		data->index++;
 		data->len++;
 	}
-	flush_data(data);
 	return (i);
 }
 
