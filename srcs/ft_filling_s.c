@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 14:53:26 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/11/10 19:32:52 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/11/10 23:10:25 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ char	*filling_i(int exe, t_data *data, t_option *flag)
 	{
 		while (!flag->zero && flag->sign--)
 			data->exe[data->i++] = ' ';
+		(flag->zero && n) ? (data->exe[data->i++] = '-') : 0;
 		while (flag->zero && flag->sign--)
 			(flag->plus ? (data->exe[data->i++] = ' ') :
 			(data->exe[data->i++] = '0'));
