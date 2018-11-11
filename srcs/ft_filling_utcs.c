@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 09:29:37 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/11/09 10:03:39 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/11/11 09:23:59 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,14 @@ void	filling_utf8_c(wchar_t str, t_data *data, t_option *flag)
 	int total;
 	int to_copy;
 
-	if (flag->speci == 'C')
-	{
-		to_copy = wcharc_len(str);
-		total = (flag->width > to_copy) ? flag->width : to_copy;
-		if (flag->sign > 0)
-			w_to_charc(str, data);
-		dataset(data, (flag->zero > 0 && flag->sign == 0) ? '0' :
-				' ', total - to_copy);
-		if (flag->sign <= 0)
-			w_to_charc(str, data);
-	}
+	to_copy = wcharc_len(str);
+	total = (flag->width > to_copy) ? flag->width : to_copy;
+	if (flag->sign > 0)
+		w_to_charc(str, data);
+	dataset(data, (flag->zero > 0 && flag->sign == 0) ? '0' :
+			' ', total - to_copy);
+	if (flag->sign <= 0)
+		w_to_charc(str, data);
 }
 
 void	filling_utf8_s(wchar_t *str, t_data *data, t_option *flag)
@@ -36,19 +33,17 @@ void	filling_utf8_s(wchar_t *str, t_data *data, t_option *flag)
 	int to_copy;
 	int str_len;
 
-	if (flag->speci == 'S')
-	{
-		str_len = wchars_len(str);
-		to_copy = (flag->preci < str_len && flag->preci != -1) ? get_precis(
-			str, flag->preci) : str_len;
-		total = (flag->width > to_copy) ? flag->width : to_copy;
-		if (flag->sign > 0)
-			wchar_write(data, str, to_copy);
-		dataset(data, (flag->zero > 0 && flag->sign == 0) ? '0' :
-				' ', total - to_copy);
-		if (flag->sign <= 0)
-			wchar_write(data, str, to_copy);
-	}
+	str == 0 ? str = L"(null)" : 0;
+	str_len = wchars_len(str);
+	to_copy = (flag->preci < str_len && flag->preci != -1) ? get_precis(str,
+			flag->preci) : str_len;
+	total = (flag->width > to_copy) ? flag->width : to_copy;
+	if (flag->sign > 0)
+		wchar_write(data, str, to_copy);
+	dataset(data, (flag->zero > 0 && flag->sign == 0) ? '0' : ' ',
+			total - to_copy);
+	if (flag->sign <= 0)
+		wchar_write(data, str, to_copy);
 }
 
 void	filling(char *exe, t_data *data, t_option *flag)

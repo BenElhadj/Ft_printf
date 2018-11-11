@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/03 03:51:41 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/11/10 19:15:41 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/11/11 09:04:04 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define FLAGS "-0123456789"
 # define WIDTH "0123456789*"
 # define LENGTH "hljztL"
+# define ALL " aAcCdDeEfFgGinoOpsSuUxX%hljztL0123456789#*+-.$"
 
 typedef struct	s_format
 {
@@ -63,6 +64,7 @@ typedef struct	s_data
 	char		exe[SIZEBUF + 1];
 	int			i;
 	int			ok;
+	int			ko;
 
 	char		data[SIZEBUF + 1];
 	size_t		index;
@@ -92,7 +94,7 @@ typedef struct	s_option
 
 char			find(const char *s, char c);
 int				ft_printf(const char *restrict format, ...);
-int				find_define(t_data *data, t_option *flag, t_format *fmtptr);
+int				find_define(t_option *flag, t_format *fmtptr);
 void			find_preci(t_option *flag, t_format *fmtptr);
 int				processing(t_format *fmtptr, t_data *data);
 void			init_type(t_type *type);

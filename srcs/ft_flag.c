@@ -6,7 +6,7 @@
 /*   By: bhamdi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 14:53:26 by bhamdi            #+#    #+#             */
-/*   Updated: 2018/11/09 22:13:48 by bhamdi           ###   ########.fr       */
+/*   Updated: 2018/11/11 09:24:01 by bhamdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,12 @@ void	find_length(t_option *flag, t_format *fmtptr)
 	fmtptr->i++) ? flag->length = 'L' : 0;
 }
 
-int		find_define(t_data *data, t_option *flag, t_format *fmtptr)
+int		find_define(t_option *flag, t_format *fmtptr)
 {
 	int i;
 
 	i = 0;
-	while (!flag->speci && i++ != 5)
+	while (!flag->speci && i++ != 9)
 	{
 		fmtptr->i++;
 		while (fmtptr->i <= fmtptr->j && fmtptr->fmt[fmtptr->i] == '#')
@@ -86,6 +86,5 @@ int		find_define(t_data *data, t_option *flag, t_format *fmtptr)
 		find(SPECIFIER, fmtptr->fmt[fmtptr->i]) ? flag->speci =
 		find(SPECIFIER, fmtptr->fmt[fmtptr->i]) : (fmtptr->i -= 1);
 	}
-	!flag->speci ? (data->ok = -1) : 0;
 	return (fmtptr->i);
 }
